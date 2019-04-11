@@ -33,6 +33,16 @@ func initializeTarget() {
 	TARGET_NETWORK_RESOURCES.numOfDequeueBits = dequeueBits
 	TARGET_NETWORK_RESOURCES.availableBuffSpace = queueSize
 
+	// change it to calculate link resources
+	// ARGET_NETWORK_RESOURCES = new(VM)
+	// TARGET_NETWORK_RESOURCES.cap = CONFIGURATION.TARGET_LINK_CAP
+	// queueLinkSize := float64(CONFIGURATION.TARGET_LINK_CAP) * CONFIGURATION.TARGET__LINK_BUFF_SIZE
+	// TARGET_NETWORK_RESOURCES.vmQueue = queueLinkSize
+	// dequeueBits := int(math.Ceil(CONFIGURATION.TARGET_LINK_CAP / (CONFIGURATION.PROCESSING_DELAY)))
+
+	// TARGET_NETWORK_RESOURCES.numOfDequeueBits = dequeueBits
+	// TARGET_NETWORK_RESOURCES.availableBuffSpace = queueLinkSize
+
 }
 
 func addToBacklog(pkt packet) {
@@ -55,9 +65,17 @@ func RemoveFromBacklog(pkt packet) {
 	}
 }
 
-func enqueueTarget(pkt packet) {
+func enqueueIncomingTarget(pkt packet) {
 	if TARGET_NETWORK_RESOURCES.availableBuffSpace-pkt.packet_len > 0 {
 		tPktQueue.Add(pkt)
+	} else {
+		dropPacketTarget(pkt)
+	}
+
+}
+func enqueueOutgoingTarget(pkt packet) {
+	if TARGET_LINK_RESOURCES.availableBuffSpace-pkt.packet_len > 0 {
+		tOutgoingPktQueue.Add(pkt)
 	} else {
 		dropPacketTarget(pkt)
 	}
@@ -67,7 +85,21 @@ func enqueueTarget(pkt packet) {
 func dequeueTarget() packet {
 	return tPktQueue.Next().(packet)
 }
-func processTarget() {
+
+func processOutgoingTarget() {
+	bitsToDequeue := int(math.Ceil((TARGET_LINK_RESOURCES.vmQueue - TARGET_LINK_RESOURCES.availableBuffSpace)))
+
+	for bitsToDequeue >= 0 {
+		var pkt = tOutgoingPktQueue.Next().(packet)
+
+		bitsToDequeue -= int(pkt.packet_len)
+		enqueueIncomingTarget(pkt)
+	}
+
+	TARGET_LINK_RESOURCES.availableBuffSpace += (float64(bitsToDequeue))
+}
+
+func processIncomingTarget() {
 	bitsToDequeue := int(math.Ceil((TARGET_NETWORK_RESOURCES.vmQueue - TARGET_NETWORK_RESOURCES.availableBuffSpace)))
 
 	for bitsToDequeue >= 0 {

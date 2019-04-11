@@ -11,7 +11,7 @@ var dest int
 var lastPingSent time.Time
 
 func ping(ingress int) {
-	var pingPkt packet = NewPacket(64*8, "ping", ingress, false)
+	var pingPkt = NewPacket(64*8, "ping", ingress, false)
 	pingPkt.dest = "target"
 	lastPingSent = time.Now()
 	enqueuePacket(pingPkt)
@@ -45,27 +45,29 @@ func amplify(pkt packet) packet {
 	return pkt
 }
 
-func sendToRandIngress(n int) {
-	// dst :=
-	// pkt := NewPacket(PKT_LEN, "udp", rand.Intn(CONFIGURATION.INGRESS_LOC), true)
-	for i := 0; i < n; i++ {
+// func sendToRandIngress(n int) {
+// 	// dst :=
+// 	// pkt := NewPacket(PKT_LEN, "udp", rand.Intn(CONFIGURATION.INGRESS_LOC), true)
+// 	for i := 0; i < n; i++ {
 
-		// # network.sendtoNetwork(pkt)
-		// }
-		//
-		// for i := 0; i < n; i++ {
-		// 	// sendtoNetwork(NewPacket(PKT_LEN,"udp",0,0))
+// 		// # network.sendtoNetwork(pkt)
+// 		// }
+// 		//
+// 		// for i := 0; i < n; i++ {
+// 		// 	// sendtoNetwork(NewPacket(PKT_LEN,"udp",0,0))
 
-		enqueuePacket(NewPacket(PKT_LEN, "udp", dest, true))
-	}
-}
+// 		enqueuePacket(NewPacket(PKT_LEN, "udp", dest, true))
+// 	}
+// }
 func randIngress() {
 	fixedCap := CONFIGURATION.ATTACKER_CAP //Mb per epoch
 	numPkts := int(math.Ceil(fixedCap / (PKT_LEN)))
 	dest = rand.Intn(CONFIGURATION.INGRESS_LOC)
 	_DEBUG.Printf("Function: randIngress - Number of packets to send in 1 second %d with packet length %f and send rate %f", numPkts, PKT_LEN, fixedCap)
 	for {
-		go sendToRandIngress(numPkts)
+		// go sendToRandIngress(numPkts)
+		go sendPktsProtocol(numPkts, dest, "dns")
+
 		time.Sleep(1 * time.Second)
 		dest = rand.Intn(CONFIGURATION.INGRESS_LOC)
 		// time.Sleep(time.Duration(CONFIGURATION.EPOCH_TIME) * time.Second)
@@ -74,12 +76,16 @@ func randIngress() {
 }
 
 func sendPktsProtocol(n int, ingress int, protocol string) {
+	_DEBUG.Printf("Function: sendPktsProtocol - protocol is %s, total pkts to send is %v and ingress is %v", protocol, n, ingress)
 	for i := 0; i < n; i++ {
 		// sendtoNetwork(NewPacket(PKT_LEN,"udp",0,0))
 		if protocol == "udp" {
 			enqueuePacket(NewPacket(PKT_LEN, protocol, ingress, true))
 		} else if protocol == "dns" {
-			enqueuePacket(amplify(NewPacket(PKT_LEN, protocol, ingress, true)))
+			pkt := amplify(NewPacket(PKT_LEN, protocol, ingress, true))
+			_DEBUG.Printf("Function: sendPktsProtocol - protocol is %s, total pkts to send is %v and ingress is %v and PKT lenght is %v", protocol, n, ingress, pkt.packet_len)
+			enqueuePacket(pkt)
+
 		}
 	}
 }

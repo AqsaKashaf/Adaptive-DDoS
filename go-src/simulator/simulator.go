@@ -77,9 +77,9 @@ func main() {
 
 	// start legitimate traffic thread
 	_DEBUG.Printf("Start legitimate traffic thread")
-	for j := 0; j < CONFIGURATION.INGRESS_LOC; j++ {
-		flowGenBenign("simple", j)
-	}
+	// for j := 0; j < CONFIGURATION.INGRESS_LOC; j++ {
+	// 	flowGenBenign("simple", j)
+	// }
 	// start attack traffic thread
 	_DEBUG.Printf("Start attack traffic thread")
 	go attack()
@@ -101,6 +101,8 @@ func main() {
 			go processPacket("UDP_FLOOD")
 			go processPacket("TCP_SYN")
 			go processPacket("DNS_AMP")
+			go processIncomingTarget()
+			go processOutgoingTarget()
 		case <-statsTicker.C:
 			go collectStats()
 		}
