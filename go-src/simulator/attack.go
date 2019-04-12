@@ -20,6 +20,7 @@ func ping(ingress int) {
 func calculateRTT(pkt packet) {
 	t := time.Now()
 	RTT = t.Sub(lastPingSent)
+	_DEBUG.Printf("RTT: %f", RTT)
 }
 func enqueueAttacker(pkt packet) {
 	if pkt.protocol == "ping" {
