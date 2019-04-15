@@ -19,7 +19,7 @@ func initializeTarget() {
 
 	dequeueBits := int(math.Ceil(CONFIGURATION.TARGET_PROCESS_CAP / (CONFIGURATION.PROCESSING_DELAY)))
 
-	_DEBUG.Printf("Function: initialize taregt- total processing capacity %d", CONFIGURATION.TARGET_PROCESS_CAP)
+	_DEBUG.Printf("Function: initialize target- total processing capacity %d", CONFIGURATION.TARGET_PROCESS_CAP)
 
 	_DEBUG.Printf("Function: initialize taregt - Bits to dequeue = %d", dequeueBits)
 
