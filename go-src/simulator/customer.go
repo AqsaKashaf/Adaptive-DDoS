@@ -33,15 +33,19 @@ func initializeTarget() {
 	TARGET_NETWORK_RESOURCES.numOfDequeueBits = dequeueBits
 	TARGET_NETWORK_RESOURCES.availableBuffSpace = queueSize
 
-	// change it to calculate link resources
-	// ARGET_NETWORK_RESOURCES = new(VM)
-	// TARGET_NETWORK_RESOURCES.cap = CONFIGURATION.TARGET_LINK_CAP
-	// queueLinkSize := float64(CONFIGURATION.TARGET_LINK_CAP) * CONFIGURATION.TARGET__LINK_BUFF_SIZE
-	// TARGET_NETWORK_RESOURCES.vmQueue = queueLinkSize
-	// dequeueBits := int(math.Ceil(CONFIGURATION.TARGET_LINK_CAP / (CONFIGURATION.PROCESSING_DELAY)))
+	TARGET_LINK_RESOURCES = new(VM)
+	TARGET_LINK_RESOURCES.cap = CONFIGURATION.TARGET_LINK_CAP
+	queueLinkSize := float64(CONFIGURATION.TARGET_LINK_CAP) * CONFIGURATION.TARGET_LINK_BUFF_SIZE
+	TARGET_LINK_RESOURCES.vmQueue = queueLinkSize
+	linkDequeueBits := int(math.Ceil(CONFIGURATION.TARGET_LINK_CAP / (CONFIGURATION.PROCESSING_DELAY)))
 
-	// TARGET_NETWORK_RESOURCES.numOfDequeueBits = dequeueBits
-	// TARGET_NETWORK_RESOURCES.availableBuffSpace = queueLinkSize
+	TARGET_LINK_RESOURCES.numOfDequeueBits = linkDequeueBits
+	TARGET_LINK_RESOURCES.availableBuffSpace = queueLinkSize
+	_DEBUG.Printf("Function: initialize target - total processing capacity %f", CONFIGURATION.TARGET_LINK_CAP)
+
+	_DEBUG.Printf("Function: initialize target - Bits to dequeue from link = %d", linkDequeueBits)
+
+	_DEBUG.Printf("Function: initialize TARGET  - Link queue size = %f", queueLinkSize)
 
 }
 
@@ -73,13 +77,20 @@ func enqueueIncomingTarget(pkt packet) {
 	}
 
 }
+
 func enqueueOutgoingTarget(pkt packet) {
 	if TARGET_LINK_RESOURCES.availableBuffSpace-pkt.packet_len > 0 {
-		tOutgoingPktQueue.Add(pkt)
+		tOutgoingQueue.Add(pkt)
+		_DEBUG.Printf("Function: enqueueOutgoingTarget - outgoing packet added to queue")
 	} else {
 		dropPacketTarget(pkt)
-	}
+		_DEBUG.Printf("Function: enqueueOutgoingTarget - outgoing packet dropped")
 
+	}
+}
+
+func dequeueOutgoingTarget() packet {
+	return tOutgoingQueue.Next().(packet)
 }
 
 func dequeueTarget() packet {
@@ -90,7 +101,7 @@ func processOutgoingTarget() {
 	bitsToDequeue := int(math.Ceil((TARGET_LINK_RESOURCES.vmQueue - TARGET_LINK_RESOURCES.availableBuffSpace)))
 
 	for bitsToDequeue >= 0 {
-		var pkt = tOutgoingPktQueue.Next().(packet)
+		var pkt = dequeueOutgoingTarget()
 
 		bitsToDequeue -= int(pkt.packet_len)
 		enqueueIncomingTarget(pkt)
