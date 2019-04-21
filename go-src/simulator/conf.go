@@ -23,6 +23,8 @@ type Config struct {
 	SERVER_CAP         int     `json:"ServerCapacity"`
 	TARGET_PROCESS_CAP float64 `json:"TargetProcessCapacity"`
 	TARGET_SERVER_CAP  float64 `json:"TargetServerCapacity"`
+	TARGET_LINK_CAP       float64 `json:"TargetLinkCapacity"`
+	TARGET_LINK_BUFF_SIZE float64 `json:"targetLinkBuffSize"`
 }
 
 func LoadConfiguration(file string) Config {
