@@ -81,7 +81,7 @@ func processPacket(attackType string) {
 			pkt = diagnose(pkt)
 			if pkt.detection == "benign" && pkt.dest == "target" {
 				// enqueueTarget(pkt)
-				// enqueueOutgoingTarget(pkt)
+				enqueueOutgoingTarget(pkt)
 			}
 			if pkt.dest == "attacker" {
 				enqueueAttacker(pkt)
