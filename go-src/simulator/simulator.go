@@ -30,6 +30,7 @@ var (
 	RTT            time.Duration
 	pktQueue       []*fifo.Queue
 	tPktQueue      *fifo.Queue
+	tOutgoingQueue *fifo.Queue
 	BACKLOG_TARGET *cache.Cache
 	ATTACK_TYPES   [3]string
 	BACKLOG        [TOTAL_BACKLOG_SIZE]string // array to store pkts
@@ -46,6 +47,7 @@ var (
 	CONN_CUST                int = 0 //num of connection in customer
 	times                    string
 	TARGET_NETWORK_RESOURCES *VM
+	TARGET_LINK_RESOURCES    *VM
 )
 
 func main() {
