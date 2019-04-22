@@ -99,6 +99,9 @@ def test_agent(Q, n_tests, n_actions, n_states, delay=0.1):
                 time.sleep(0.5)
                 break
 
+def get_tuple(length, total):
+    return filter(lambda x:sum(x)==total,product(range(total+1),repeat=length))
+
 
 if __name__ =="__main__":
     alpha = 0.1
@@ -119,3 +122,11 @@ if __name__ =="__main__":
 #    type3 = np.max(q_table[:,2])/(np.max(q_table[:,0])+(np.max(q_table[:,1]))+np.max(q_table[:,2]))
 #    print("Attack Type 1:",type1*100,"Attack Type 2:",type2*100,"Attack Type 3:",type3*100)
     print("SARSA Time", end-start)
+    ind = np.unravel_index(np.argmax(q_table, axis=None), q_table.shape)
+    print(ind)
+    
+    x=list(get_tuple(3,100))
+    k= ind[1] % 5151
+
+    print("Attack Type:",x[k])
+    print("Ingress:", int(ind[1] / 5151))
