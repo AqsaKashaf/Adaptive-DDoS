@@ -1,0 +1,1155 @@
+DEBUG: 2019/04/23 09:30:26 simulator.go:63: Hello from main
+DEBUG: 2019/04/23 09:30:26 simulator.go:65: Reading configuration file
+DEBUG: 2019/04/23 09:30:26 simulator.go:69: {
+	"attackerType": "randIngress",
+	"defenseType": "static",
+	"ingreeLoc": 1,
+	"VMCapacity": 2000,
+	"ISPCapacity": 2000,
+	"numNICsVM": 1,
+	"attackerCapacity": 2000,
+	"legitimateTraffic": "simple",
+	"epochTime": 5,
+	"processingDelay": 1,
+	"buffSize": 8000000,
+	"targetBuffSize": 100000,
+	"backlogSize": 256,
+	"ServerCapacity": 0,
+	"TargetProcessCapacity": 10,
+	"TargetServerCapacity": 10,
+	"TargetLinkCapacity": 10,
+	"targetLinkBuffSize": 100000
+}
+DEBUG: 2019/04/23 09:30:26 simulator.go:71: Initialize traffic stats data structures in ISP
+DEBUG: 2019/04/23 09:30:26 isp.go:16: Function: initializeISP- Initializing TRAFFIC_STATS variables
+DEBUG: 2019/04/23 09:30:26 simulator.go:75: Initialize capacity of ingress locations depending on the defense type
+DEBUG: 2019/04/23 09:30:26 defense.go:15: Function: initializeAdaptive - Initialize inital capapcity of ingress locations
+DEBUG: 2019/04/23 09:30:26 defense.go:43: Function: initializeAdaptive - Initial capacity of ingress 0 = 2000.000000
+DEBUG: 2019/04/23 09:30:26 defense.go:45: Function: initializeAdaptive - Bits to dequeue at ingress 0 = 2000
+DEBUG: 2019/04/23 09:30:26 defense.go:46: Function: initializeAdaptive - Initial queue size at ingress 0 = 8000000.000000
+DEBUG: 2019/04/23 09:30:26 defense.go:43: Function: initializeAdaptive - Initial capacity of ingress 0 = 2000.000000
+DEBUG: 2019/04/23 09:30:26 defense.go:45: Function: initializeAdaptive - Bits to dequeue at ingress 0 = 2000
+DEBUG: 2019/04/23 09:30:26 defense.go:46: Function: initializeAdaptive - Initial queue size at ingress 0 = 8000000.000000
+DEBUG: 2019/04/23 09:30:26 defense.go:43: Function: initializeAdaptive - Initial capacity of ingress 0 = 2000.000000
+DEBUG: 2019/04/23 09:30:26 defense.go:45: Function: initializeAdaptive - Bits to dequeue at ingress 0 = 2000
+DEBUG: 2019/04/23 09:30:26 defense.go:46: Function: initializeAdaptive - Initial queue size at ingress 0 = 8000000.000000
+DEBUG: 2019/04/23 09:30:26 customer.go:14: Function: initializeTarget
+DEBUG: 2019/04/23 09:30:26 customer.go:23: Function: initialize target- total processing capacity %!d(float64=10)
+DEBUG: 2019/04/23 09:30:26 customer.go:25: Function: initialize taregt - Bits to dequeue = 10
+DEBUG: 2019/04/23 09:30:26 customer.go:27: Function: initialize TARGET  - Initial queue size = 1000000.000000
+DEBUG: 2019/04/23 09:30:26 customer.go:46: Function: initialize target - total processing capacity 10.000000
+DEBUG: 2019/04/23 09:30:26 customer.go:48: Function: initialize target - Bits to dequeue from link = 10
+DEBUG: 2019/04/23 09:30:26 customer.go:50: Function: initialize TARGET  - Link queue size = 1000000.000000
+DEBUG: 2019/04/23 09:30:26 simulator.go:83: Start legitimate traffic thread
+DEBUG: 2019/04/23 09:30:26 simulator.go:88: Start attack traffic thread
+DEBUG: 2019/04/23 09:30:26 simulator.go:92: Start packet processing thread - processing delay = 1.000000 s
+DEBUG: 2019/04/23 09:30:26 simulator.go:93: Start stats collection thread - epoch = 5.000000 s
+DEBUG: 2019/04/23 09:30:26 attack.go:68: Function: randIngress - Number of packets to send in 1 second 2500000 with packet length 0.000800 and send rate 2000.000000
+DEBUG: 2019/04/23 09:30:26 attack.go:81: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007762036352180051
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006658240212873962
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005750856748747922
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005698549988285064
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006747292291468438
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004262548076869905
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004626077018931165
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004387878075657939
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0052036474423411486
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006060850514008262
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007254559843960388
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0048570554903295
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005522628757198745
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00527223269732132
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005875559379609693
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005132136604721781
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005172407429347264
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006716338703680865
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0048742122103710575
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004812747506589292
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005443485667427624
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006282693104284091
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007449965749791545
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005172456978215432
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005188330254225167
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007010292142206448
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004826330647654795
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007461340052006244
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00678687666298654
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006095281224200004
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00411321233330356
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004633313110980511
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006429013758182062
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007900966475442315
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004317814493495488
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0063792343907322505
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004236482605255501
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006768098349412448
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00520609072402624
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004693064952730822
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006164399420034942
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006176622292003541
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005114030487264435
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005692608806287312
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006122342861402821
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005014162002060242
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005128323979859699
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00715441966007738
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005447221921921268
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0075221724909664694
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005188449042559083
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007577446917321814
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004389818473596466
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00790766747434505
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004297163995799372
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004889157668027152
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006724313249570284
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00496606035418861
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0052460897772420995
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007731385714073736
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006967395839967293
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007204220170610645
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006920925909179233
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004731699665815633
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005713428327227232
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007587967830247491
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006730613952052975
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00791571742230675
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0076888490356869085
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004363349101415549
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005972567990819522
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0077079472142976575
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007819781761667128
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005391815854512892
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006763355326022716
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006843628781199981
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006255118383261058
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0065979578423717615
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0062070601960511
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007023294029966392
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0056152131431828015
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004522604468115889
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007943858917360987
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007585366981584865
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005288335882083527
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006884591060770697
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006578159130037319
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004342082030167645
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006678301190799099
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006490913269454818
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005478771374559288
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004947290187221941
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0061411275625376256
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004748984405604213
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004955362811221275
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006512392684873453
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004507011717490406
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005125321175221438
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00564129137742513
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00573964989556583
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006500380113202121
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006200587682030893
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00649443530581172
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006916722906937193
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007322135675979226
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004002055262064486
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006944274405981726
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005599935051427982
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005991472453370808
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00641591240913171
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005638473111539971
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004118685125099547
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004007615578056947
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004011372164699451
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007663285258451828
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006359336740019678
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006237569796284056
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007261620683733444
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0075120470346096
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005833769914302603
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006400662381293323
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0041050606024387575
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0073833311489921675
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004998772804653976
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006567137163198332
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004989866431346514
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004694623378892531
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006370495012849782
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0072575782038680845
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006775352546068839
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004121290191332027
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006156840423563785
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007902699259949266
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007003052225918394
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005176025251180059
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007012645110947034
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004603856179918428
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005423069061636946
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0073277234118792655
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004927320167750708
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006511338420000091
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0059935772051039025
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004359344357041467
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004100775839179581
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0055688647326160995
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006357532345603197
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007718446541796121
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006288347205772336
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0063543053805739285
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005647050753380066
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006210321559256975
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005966429584526482
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007831815654150054
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007188834163643212
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004429524451283008
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007132139893584008
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0055730039969155475
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0045216553846951675
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004760131065356832
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006959303124063334
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00661616563692512
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004393535155942931
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006081521142848912
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004398918654879741
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004607373608327607
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00430476104921502
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005260832341280498
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004638603685859581
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004551216246478105
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00529044273147119
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006156298068157918
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006283406509381984
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006051127032444327
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006736700520389821
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0066121608205414436
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006097999038199461
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006617080537696585
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006865473499606685
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00654657685615272
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0040513036364254445
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004122728783148555
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004392123499225221
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00547644683665738
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0073058165025389685
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0053907268343662785
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005377260070905442
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005011999294591377
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004865884586619882
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006220008542539177
+DEBUG: 2019/04/23 09:30:26 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005608283381087323
+DEBUG: 2019/04/23 09:30:26 customer.go:87: Function: enqueueOutgoingTarget - outgoing packet added to queue
+DEBUG: 2019/04/23 09:30:26 customer.go:87: Function: enqueueOutgoingTarget - outgoing packet added to queue
+DEBUG: 2019/04/23 09:31:29 simulator.go:63: Hello from main
+DEBUG: 2019/04/23 09:31:29 simulator.go:65: Reading configuration file
+DEBUG: 2019/04/23 09:31:29 simulator.go:69: {
+	"attackerType": "randIngress",
+	"defenseType": "static",
+	"ingreeLoc": 1,
+	"VMCapacity": 2000,
+	"ISPCapacity": 2000,
+	"numNICsVM": 1,
+	"attackerCapacity": 2000,
+	"legitimateTraffic": "simple",
+	"epochTime": 5,
+	"processingDelay": 1,
+	"buffSize": 8000000,
+	"targetBuffSize": 100000,
+	"backlogSize": 256,
+	"ServerCapacity": 0,
+	"TargetProcessCapacity": 10,
+	"TargetServerCapacity": 10,
+	"TargetLinkCapacity": 10,
+	"targetLinkBuffSize": 100000
+}
+DEBUG: 2019/04/23 09:31:29 simulator.go:71: Initialize traffic stats data structures in ISP
+DEBUG: 2019/04/23 09:31:29 isp.go:16: Function: initializeISP- Initializing TRAFFIC_STATS variables
+DEBUG: 2019/04/23 09:31:29 simulator.go:75: Initialize capacity of ingress locations depending on the defense type
+DEBUG: 2019/04/23 09:31:29 defense.go:15: Function: initializeAdaptive - Initialize inital capapcity of ingress locations
+DEBUG: 2019/04/23 09:31:29 defense.go:43: Function: initializeAdaptive - Initial capacity of ingress 0 = 2000.000000
+DEBUG: 2019/04/23 09:31:29 defense.go:45: Function: initializeAdaptive - Bits to dequeue at ingress 0 = 2000
+DEBUG: 2019/04/23 09:31:29 defense.go:46: Function: initializeAdaptive - Initial queue size at ingress 0 = 8000000.000000
+DEBUG: 2019/04/23 09:31:29 defense.go:43: Function: initializeAdaptive - Initial capacity of ingress 0 = 2000.000000
+DEBUG: 2019/04/23 09:31:29 defense.go:45: Function: initializeAdaptive - Bits to dequeue at ingress 0 = 2000
+DEBUG: 2019/04/23 09:31:29 defense.go:46: Function: initializeAdaptive - Initial queue size at ingress 0 = 8000000.000000
+DEBUG: 2019/04/23 09:31:29 defense.go:43: Function: initializeAdaptive - Initial capacity of ingress 0 = 2000.000000
+DEBUG: 2019/04/23 09:31:29 defense.go:45: Function: initializeAdaptive - Bits to dequeue at ingress 0 = 2000
+DEBUG: 2019/04/23 09:31:29 defense.go:46: Function: initializeAdaptive - Initial queue size at ingress 0 = 8000000.000000
+DEBUG: 2019/04/23 09:31:29 customer.go:14: Function: initializeTarget
+DEBUG: 2019/04/23 09:31:29 customer.go:23: Function: initialize target- total processing capacity %!d(float64=10)
+DEBUG: 2019/04/23 09:31:29 customer.go:25: Function: initialize taregt - Bits to dequeue = 10
+DEBUG: 2019/04/23 09:31:29 customer.go:27: Function: initialize TARGET  - Initial queue size = 1000000.000000
+DEBUG: 2019/04/23 09:31:29 customer.go:46: Function: initialize target - total processing capacity 10.000000
+DEBUG: 2019/04/23 09:31:29 customer.go:48: Function: initialize target - Bits to dequeue from link = 10
+DEBUG: 2019/04/23 09:31:29 customer.go:50: Function: initialize TARGET  - Link queue size = 1000000.000000
+DEBUG: 2019/04/23 09:31:29 simulator.go:83: Start legitimate traffic thread
+DEBUG: 2019/04/23 09:31:29 simulator.go:88: Start attack traffic thread
+DEBUG: 2019/04/23 09:31:29 simulator.go:92: Start packet processing thread - processing delay = 1.000000 s
+DEBUG: 2019/04/23 09:31:29 simulator.go:93: Start stats collection thread - epoch = 5.000000 s
+DEBUG: 2019/04/23 09:31:29 attack.go:68: Function: randIngress - Number of packets to send in 1 second 2500000 with packet length 0.000800 and send rate 2000.000000
+DEBUG: 2019/04/23 09:31:29 attack.go:81: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007762036352180051
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006658240212873962
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005750856748747922
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005698549988285064
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006747292291468438
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004262548076869905
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004626077018931165
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004387878075657939
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0052036474423411486
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006060850514008262
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007254559843960388
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0048570554903295
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005522628757198745
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00527223269732132
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005875559379609693
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005132136604721781
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005172407429347264
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006716338703680865
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0048742122103710575
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004812747506589292
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005443485667427624
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006282693104284091
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007449965749791545
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005172456978215432
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005188330254225167
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007010292142206448
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004826330647654795
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007461340052006244
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00678687666298654
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006095281224200004
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00411321233330356
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004633313110980511
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006429013758182062
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007900966475442315
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004317814493495488
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0063792343907322505
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004236482605255501
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006768098349412448
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00520609072402624
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004693064952730822
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006164399420034942
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006176622292003541
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005114030487264435
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005692608806287312
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006122342861402821
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005014162002060242
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005128323979859699
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00715441966007738
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005447221921921268
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0075221724909664694
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005188449042559083
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007577446917321814
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004389818473596466
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00790766747434505
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004297163995799372
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004889157668027152
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006724313249570284
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00496606035418861
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0052460897772420995
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007731385714073736
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006967395839967293
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007204220170610645
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006920925909179233
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004731699665815633
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005713428327227232
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007587967830247491
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006730613952052975
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00791571742230675
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0076888490356869085
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004363349101415549
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005972567990819522
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0077079472142976575
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007819781761667128
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005391815854512892
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006763355326022716
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006843628781199981
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006255118383261058
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0065979578423717615
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0062070601960511
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007023294029966392
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0056152131431828015
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004522604468115889
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007943858917360987
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007585366981584865
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005288335882083527
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006884591060770697
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006578159130037319
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004342082030167645
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006678301190799099
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006490913269454818
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005478771374559288
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004947290187221941
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0061411275625376256
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004748984405604213
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004955362811221275
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006512392684873453
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004507011717490406
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005125321175221438
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00564129137742513
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00573964989556583
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006500380113202121
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006200587682030893
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00649443530581172
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006916722906937193
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007322135675979226
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004002055262064486
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006944274405981726
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005599935051427982
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005991472453370808
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00641591240913171
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005638473111539971
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004118685125099547
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004007615578056947
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004011372164699451
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007663285258451828
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006359336740019678
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006237569796284056
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007261620683733444
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0075120470346096
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005833769914302603
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006400662381293323
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0041050606024387575
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0073833311489921675
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004998772804653976
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006567137163198332
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004989866431346514
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004694623378892531
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006370495012849782
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0072575782038680845
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006775352546068839
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004121290191332027
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006156840423563785
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007902699259949266
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007003052225918394
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005176025251180059
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007012645110947034
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004603856179918428
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005423069061636946
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0073277234118792655
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004927320167750708
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006511338420000091
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0059935772051039025
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004359344357041467
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004100775839179581
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0055688647326160995
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006357532345603197
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007718446541796121
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006288347205772336
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0063543053805739285
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005647050753380066
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006210321559256975
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005966429584526482
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007831815654150054
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007188834163643212
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004429524451283008
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007132139893584008
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0055730039969155475
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0045216553846951675
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004760131065356832
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006959303124063334
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00661616563692512
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004393535155942931
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006081521142848912
+DEBUG: 2019/04/23 09:31:29 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004398918654879741
+DEBUG: 2019/04/23 09:31:29 customer.go:88: Function: enqueueOutgoingTarget - outgoing packet added to queue
+DEBUG: 2019/04/23 09:31:29 customer.go:88: Function: enqueueOutgoingTarget - outgoing packet added to queue
+DEBUG: 2019/04/23 09:33:39 simulator.go:63: Hello from main
+DEBUG: 2019/04/23 09:33:39 simulator.go:65: Reading configuration file
+DEBUG: 2019/04/23 09:33:39 simulator.go:69: {
+	"attackerType": "randIngress",
+	"defenseType": "static",
+	"ingreeLoc": 1,
+	"VMCapacity": 2000,
+	"ISPCapacity": 2000,
+	"numNICsVM": 1,
+	"attackerCapacity": 2000,
+	"legitimateTraffic": "simple",
+	"epochTime": 5,
+	"processingDelay": 1,
+	"buffSize": 8000000,
+	"targetBuffSize": 100000,
+	"backlogSize": 256,
+	"ServerCapacity": 0,
+	"TargetProcessCapacity": 10,
+	"TargetServerCapacity": 10,
+	"TargetLinkCapacity": 10,
+	"targetLinkBuffSize": 100000
+}
+DEBUG: 2019/04/23 09:33:39 simulator.go:71: Initialize traffic stats data structures in ISP
+DEBUG: 2019/04/23 09:33:39 isp.go:16: Function: initializeISP- Initializing TRAFFIC_STATS variables
+DEBUG: 2019/04/23 09:33:39 simulator.go:75: Initialize capacity of ingress locations depending on the defense type
+DEBUG: 2019/04/23 09:33:39 defense.go:15: Function: initializeAdaptive - Initialize inital capapcity of ingress locations
+DEBUG: 2019/04/23 09:33:39 defense.go:43: Function: initializeAdaptive - Initial capacity of ingress 0 = 2000.000000
+DEBUG: 2019/04/23 09:33:39 defense.go:45: Function: initializeAdaptive - Bits to dequeue at ingress 0 = 2000
+DEBUG: 2019/04/23 09:33:39 defense.go:46: Function: initializeAdaptive - Initial queue size at ingress 0 = 8000000.000000
+DEBUG: 2019/04/23 09:33:39 defense.go:43: Function: initializeAdaptive - Initial capacity of ingress 0 = 2000.000000
+DEBUG: 2019/04/23 09:33:39 defense.go:45: Function: initializeAdaptive - Bits to dequeue at ingress 0 = 2000
+DEBUG: 2019/04/23 09:33:39 defense.go:46: Function: initializeAdaptive - Initial queue size at ingress 0 = 8000000.000000
+DEBUG: 2019/04/23 09:33:39 defense.go:43: Function: initializeAdaptive - Initial capacity of ingress 0 = 2000.000000
+DEBUG: 2019/04/23 09:33:39 defense.go:45: Function: initializeAdaptive - Bits to dequeue at ingress 0 = 2000
+DEBUG: 2019/04/23 09:33:39 defense.go:46: Function: initializeAdaptive - Initial queue size at ingress 0 = 8000000.000000
+DEBUG: 2019/04/23 09:33:39 customer.go:14: Function: initializeTarget
+DEBUG: 2019/04/23 09:33:39 customer.go:23: Function: initialize target- total processing capacity %!d(float64=10)
+DEBUG: 2019/04/23 09:33:39 customer.go:25: Function: initialize taregt - Bits to dequeue = 10
+DEBUG: 2019/04/23 09:33:39 customer.go:27: Function: initialize TARGET  - Initial queue size = 1000000.000000
+DEBUG: 2019/04/23 09:33:39 customer.go:46: Function: initialize target - total processing capacity 10.000000
+DEBUG: 2019/04/23 09:33:39 customer.go:48: Function: initialize target - Bits to dequeue from link = 10
+DEBUG: 2019/04/23 09:33:39 customer.go:50: Function: initialize TARGET  - Link queue size = 1000000.000000
+DEBUG: 2019/04/23 09:33:39 simulator.go:83: Start legitimate traffic thread
+DEBUG: 2019/04/23 09:33:39 simulator.go:88: Start attack traffic thread
+DEBUG: 2019/04/23 09:33:39 simulator.go:92: Start packet processing thread - processing delay = 1.000000 s
+DEBUG: 2019/04/23 09:33:39 simulator.go:93: Start stats collection thread - epoch = 5.000000 s
+DEBUG: 2019/04/23 09:33:39 attack.go:68: Function: randIngress - Number of packets to send in 1 second 2500000 with packet length 0.000800 and send rate 2000.000000
+DEBUG: 2019/04/23 09:33:39 attack.go:81: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007762036352180051
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006658240212873962
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005750856748747922
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005698549988285064
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006747292291468438
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004262548076869905
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004626077018931165
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004387878075657939
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0052036474423411486
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006060850514008262
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007254559843960388
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0048570554903295
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005522628757198745
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00527223269732132
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005875559379609693
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005132136604721781
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005172407429347264
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006716338703680865
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0048742122103710575
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004812747506589292
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005443485667427624
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006282693104284091
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007449965749791545
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005172456978215432
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005188330254225167
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007010292142206448
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004826330647654795
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007461340052006244
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00678687666298654
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006095281224200004
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00411321233330356
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004633313110980511
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006429013758182062
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007900966475442315
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004317814493495488
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0063792343907322505
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004236482605255501
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006768098349412448
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00520609072402624
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004693064952730822
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006164399420034942
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006176622292003541
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005114030487264435
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005692608806287312
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006122342861402821
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005014162002060242
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005128323979859699
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00715441966007738
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005447221921921268
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0075221724909664694
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005188449042559083
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007577446917321814
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004389818473596466
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00790766747434505
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004297163995799372
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004889157668027152
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006724313249570284
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00496606035418861
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0052460897772420995
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007731385714073736
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006967395839967293
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007204220170610645
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006920925909179233
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004731699665815633
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005713428327227232
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007587967830247491
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006730613952052975
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00791571742230675
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0076888490356869085
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004363349101415549
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005972567990819522
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0077079472142976575
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007819781761667128
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005391815854512892
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006763355326022716
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006843628781199981
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006255118383261058
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0065979578423717615
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0062070601960511
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007023294029966392
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0056152131431828015
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004522604468115889
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007943858917360987
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007585366981584865
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005288335882083527
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006884591060770697
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006578159130037319
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004342082030167645
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006678301190799099
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006490913269454818
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005478771374559288
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004947290187221941
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0061411275625376256
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004748984405604213
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004955362811221275
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006512392684873453
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004507011717490406
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005125321175221438
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00564129137742513
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00573964989556583
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006500380113202121
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006200587682030893
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00649443530581172
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006916722906937193
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007322135675979226
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004002055262064486
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006944274405981726
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005599935051427982
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005991472453370808
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00641591240913171
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005638473111539971
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004118685125099547
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004007615578056947
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004011372164699451
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007663285258451828
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006359336740019678
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006237569796284056
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007261620683733444
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0075120470346096
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005833769914302603
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006400662381293323
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0041050606024387575
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0073833311489921675
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004998772804653976
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006567137163198332
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004989866431346514
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004694623378892531
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006370495012849782
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0072575782038680845
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006775352546068839
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004121290191332027
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006156840423563785
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007902699259949266
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007003052225918394
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005176025251180059
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007012645110947034
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004603856179918428
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005423069061636946
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0073277234118792655
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004927320167750708
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006511338420000091
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0059935772051039025
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004359344357041467
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004100775839179581
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0055688647326160995
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006357532345603197
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007718446541796121
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006288347205772336
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0063543053805739285
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005647050753380066
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006210321559256975
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005966429584526482
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007831815654150054
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007188834163643212
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004429524451283008
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007132139893584008
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0055730039969155475
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0045216553846951675
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004760131065356832
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006959303124063334
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00661616563692512
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004393535155942931
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006081521142848912
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004398918654879741
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004607373608327607
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00430476104921502
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005260832341280498
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004638603685859581
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004551216246478105
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00529044273147119
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006156298068157918
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006283406509381984
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006051127032444327
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006736700520389821
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0066121608205414436
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006097999038199461
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006617080537696585
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006865473499606685
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00654657685615272
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0040513036364254445
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004122728783148555
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004392123499225221
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00547644683665738
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0073058165025389685
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0053907268343662785
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005377260070905442
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005011999294591377
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004865884586619882
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006220008542539177
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005608283381087323
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006025988254705674
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004674718673337344
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005325473041227936
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007311712384602235
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006801151492583261
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004231705038657343
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007996637960881334
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005646161452881904
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00444669854705922
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00712301633823397
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004368470497762969
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004213978497977631
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006858783263566519
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005003049101716721
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007394531683612627
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007895527496282691
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004850243796201278
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004086135133302421
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007780779041555303
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0043718806219997
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006583333498095907
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005247542171308217
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005793857455761826
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005948956994321478
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0043299187060454
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006687316424938559
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005600753157694574
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007601100589057247
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0077995328244050135
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00527732507042847
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005997541975009653
+DEBUG: 2019/04/23 09:33:39 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0056017292685672515
+DEBUG: 2019/04/23 13:53:20 simulator.go:63: Hello from main
+DEBUG: 2019/04/23 13:53:20 simulator.go:65: Reading configuration file
+DEBUG: 2019/04/23 13:53:20 simulator.go:69: {
+	"attackerType": "randIngress",
+	"defenseType": "static",
+	"ingreeLoc": 1,
+	"VMCapacity": 2000,
+	"ISPCapacity": 2000,
+	"numNICsVM": 1,
+	"attackerCapacity": 2000,
+	"legitimateTraffic": "simple",
+	"epochTime": 5,
+	"processingDelay": 1,
+	"buffSize": 8000000,
+	"targetBuffSize": 100000,
+	"backlogSize": 256,
+	"ServerCapacity": 0,
+	"TargetProcessCapacity": 10,
+	"TargetServerCapacity": 10,
+	"TargetLinkCapacity": 10,
+	"targetLinkBuffSize": 100000
+}
+DEBUG: 2019/04/23 13:53:20 simulator.go:71: Initialize traffic stats data structures in ISP
+DEBUG: 2019/04/23 13:53:20 isp.go:16: Function: initializeISP- Initializing TRAFFIC_STATS variables
+DEBUG: 2019/04/23 13:53:20 simulator.go:75: Initialize capacity of ingress locations depending on the defense type
+DEBUG: 2019/04/23 13:53:20 defense.go:15: Function: initializeAdaptive - Initialize inital capapcity of ingress locations
+DEBUG: 2019/04/23 13:53:20 defense.go:43: Function: initializeAdaptive - Initial capacity of ingress 0 = 2000.000000
+DEBUG: 2019/04/23 13:53:20 defense.go:45: Function: initializeAdaptive - Bits to dequeue at ingress 0 = 2000
+DEBUG: 2019/04/23 13:53:20 defense.go:46: Function: initializeAdaptive - Initial queue size at ingress 0 = 8000000.000000
+DEBUG: 2019/04/23 13:53:20 defense.go:43: Function: initializeAdaptive - Initial capacity of ingress 0 = 2000.000000
+DEBUG: 2019/04/23 13:53:20 defense.go:45: Function: initializeAdaptive - Bits to dequeue at ingress 0 = 2000
+DEBUG: 2019/04/23 13:53:20 defense.go:46: Function: initializeAdaptive - Initial queue size at ingress 0 = 8000000.000000
+DEBUG: 2019/04/23 13:53:20 defense.go:43: Function: initializeAdaptive - Initial capacity of ingress 0 = 2000.000000
+DEBUG: 2019/04/23 13:53:20 defense.go:45: Function: initializeAdaptive - Bits to dequeue at ingress 0 = 2000
+DEBUG: 2019/04/23 13:53:20 defense.go:46: Function: initializeAdaptive - Initial queue size at ingress 0 = 8000000.000000
+DEBUG: 2019/04/23 13:53:20 customer.go:14: Function: initializeTarget
+DEBUG: 2019/04/23 13:53:20 customer.go:23: Function: initialize target- total processing capacity %!d(float64=10)
+DEBUG: 2019/04/23 13:53:20 customer.go:25: Function: initialize taregt - Bits to dequeue = 10
+DEBUG: 2019/04/23 13:53:20 customer.go:27: Function: initialize TARGET  - Initial queue size = 1000000.000000
+DEBUG: 2019/04/23 13:53:20 customer.go:46: Function: initialize target - total processing capacity 10.000000
+DEBUG: 2019/04/23 13:53:20 customer.go:48: Function: initialize target - Bits to dequeue from link = 10
+DEBUG: 2019/04/23 13:53:20 customer.go:50: Function: initialize TARGET  - Link queue size = 1000000.000000
+DEBUG: 2019/04/23 13:53:20 simulator.go:83: Start legitimate traffic thread
+DEBUG: 2019/04/23 13:53:20 simulator.go:88: Start attack traffic thread
+DEBUG: 2019/04/23 13:53:20 simulator.go:92: Start packet processing thread - processing delay = 1.000000 s
+DEBUG: 2019/04/23 13:53:20 simulator.go:93: Start stats collection thread - epoch = 5.000000 s
+DEBUG: 2019/04/23 13:53:20 attack.go:68: Function: randIngress - Number of packets to send in 1 second 2500000 with packet length 0.000800 and send rate 2000.000000
+DEBUG: 2019/04/23 13:53:20 attack.go:81: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007762036352180051
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006658240212873962
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005750856748747922
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005698549988285064
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006747292291468438
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004262548076869905
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004626077018931165
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004387878075657939
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0052036474423411486
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006060850514008262
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007254559843960388
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0048570554903295
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005522628757198745
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00527223269732132
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005875559379609693
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005132136604721781
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005172407429347264
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006716338703680865
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0048742122103710575
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004812747506589292
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005443485667427624
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006282693104284091
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007449965749791545
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005172456978215432
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005188330254225167
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007010292142206448
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004826330647654795
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007461340052006244
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00678687666298654
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006095281224200004
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00411321233330356
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004633313110980511
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006429013758182062
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007900966475442315
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004317814493495488
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0063792343907322505
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004236482605255501
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006768098349412448
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00520609072402624
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004693064952730822
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006164399420034942
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006176622292003541
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005114030487264435
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005692608806287312
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006122342861402821
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005014162002060242
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005128323979859699
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00715441966007738
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005447221921921268
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0075221724909664694
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005188449042559083
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007577446917321814
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004389818473596466
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00790766747434505
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004297163995799372
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004889157668027152
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006724313249570284
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00496606035418861
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0052460897772420995
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007731385714073736
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006967395839967293
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007204220170610645
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006920925909179233
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004731699665815633
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005713428327227232
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007587967830247491
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006730613952052975
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00791571742230675
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0076888490356869085
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004363349101415549
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005972567990819522
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0077079472142976575
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007819781761667128
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005391815854512892
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006763355326022716
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006843628781199981
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006255118383261058
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0065979578423717615
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0062070601960511
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007023294029966392
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0056152131431828015
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004522604468115889
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007943858917360987
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007585366981584865
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005288335882083527
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006884591060770697
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006578159130037319
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004342082030167645
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006678301190799099
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006490913269454818
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005478771374559288
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004947290187221941
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0061411275625376256
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004748984405604213
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004955362811221275
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006512392684873453
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004507011717490406
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005125321175221438
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00564129137742513
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00573964989556583
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006500380113202121
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006200587682030893
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00649443530581172
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006916722906937193
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007322135675979226
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004002055262064486
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006944274405981726
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005599935051427982
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005991472453370808
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00641591240913171
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005638473111539971
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004118685125099547
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004007615578056947
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004011372164699451
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007663285258451828
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006359336740019678
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006237569796284056
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007261620683733444
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0075120470346096
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005833769914302603
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006400662381293323
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0041050606024387575
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0073833311489921675
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004998772804653976
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006567137163198332
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004989866431346514
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004694623378892531
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006370495012849782
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0072575782038680845
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006775352546068839
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004121290191332027
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006156840423563785
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007902699259949266
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007003052225918394
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005176025251180059
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007012645110947034
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004603856179918428
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005423069061636946
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0073277234118792655
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004927320167750708
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006511338420000091
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0059935772051039025
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004359344357041467
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004100775839179581
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0055688647326160995
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006357532345603197
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007718446541796121
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006288347205772336
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0063543053805739285
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005647050753380066
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006210321559256975
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005966429584526482
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007831815654150054
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007188834163643212
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004429524451283008
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007132139893584008
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0055730039969155475
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0045216553846951675
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004760131065356832
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006959303124063334
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00661616563692512
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004393535155942931
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006081521142848912
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004398918654879741
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004607373608327607
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00430476104921502
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005260832341280498
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004638603685859581
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004551216246478105
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00529044273147119
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006156298068157918
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006283406509381984
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006051127032444327
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006736700520389821
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0066121608205414436
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006097999038199461
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006617080537696585
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006865473499606685
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00654657685615272
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0040513036364254445
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004122728783148555
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004392123499225221
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00547644683665738
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0073058165025389685
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0053907268343662785
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005377260070905442
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005011999294591377
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004865884586619882
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006220008542539177
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005608283381087323
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006025988254705674
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004674718673337344
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005325473041227936
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007311712384602235
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006801151492583261
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004231705038657343
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007996637960881334
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005646161452881904
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00444669854705922
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00712301633823397
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004368470497762969
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004213978497977631
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006858783263566519
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005003049101716721
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007394531683612627
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007895527496282691
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004850243796201278
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004086135133302421
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007780779041555303
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0043718806219997
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006583333498095907
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005247542171308217
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005793857455761826
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005948956994321478
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0043299187060454
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006687316424938559
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005600753157694574
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007601100589057247
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0077995328244050135
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00527732507042847
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005997541975009653
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0056017292685672515
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004079234681301808
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0065801554640777925
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005714753720279732
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00535838700554924
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0075497900034020024
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004945309897217442
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007060032859733119
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004143018589744338
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006910309024166091
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006503346507832501
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006052350024351427
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004289793427169406
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006896916233836674
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007519379385222837
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007911053909430874
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007390001049058725
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007328791752599734
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0049913780927479815
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007653596251745885
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004300148840538614
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007340415204617412
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006517326766581203
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00700696231558694
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006528013735155199
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004387736852954927
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004059309477979506
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006335338967450125
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004275024780808619
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00799309524403398
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006596753666393696
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007941862314532993
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00733922304087685
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005328224342876242
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00664557272233337
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007824082506386438
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005242041104899285
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0047375627760081074
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007868377365487093
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007332967262112618
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0052381938021093125
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007223487070150579
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00566930336876153
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0068741217974111
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005626947101801564
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007583213070976584
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007832705450410374
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004074852884558626
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007166689236328333
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005694212615543364
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004060725108892294
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0057307929603162555
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007619104948262934
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007422817658299546
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004171686568705337
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0066361221320310184
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0053914361725202154
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006013947160194765
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00735978968468224
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004092438273642176
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004497454074398166
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005044702476752874
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007339790025973978
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005259219183823902
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0040307248258963525
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007599000502870109
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0054810701458020425
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004400797637077659
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006572816106280813
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007079556359932333
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007164501342647938
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005049527629882911
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005387455521517021
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004858614861507766
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007288371588706287
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0054045371986608534
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006396777010023525
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006313405027724449
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005654323951905252
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0044794020356114525
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007646454827166396
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004215142320422993
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004915670347042395
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005296695852245553
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0054030605105886455
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00539715499109705
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005215208519417464
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007874984639863247
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006686106201843352
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004831772513492627
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007852557604809882
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005208809500168535
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007231764323819232
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004536336651000967
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007791041156778227
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006563459284673016
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007813035017001407
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007239496903735808
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004726363387030255
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0077710294861494935
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007324964142175071
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00597872174312824
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00742124138590776
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006842975647276393
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005093979025166392
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005630531487567926
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0076390451300764745
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007777588554801219
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005994529807422408
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005154553240509238
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007903581025998552
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005810337905112325
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004179962794711828
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00526144792607283
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007807624592481489
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007006252329896944
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006143163995958457
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00667885835534043
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007460699989933146
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005835537815615558
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006314203609983281
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005926119287398646
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006202463047932732
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007802492975232618
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006039461681891822
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00697005891864732
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005963176057657421
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004264605659482758
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005049962650599598
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007701871776312
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005485946606632889
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005637677600124293
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005663007878935986
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004389046398946158
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007606510497918774
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004017778639192532
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005095698173404107
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004437226644467202
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0074217936515718185
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0050282214265561015
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00795652836812809
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007705645689472509
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0046837841283535716
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00521554849957301
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006133805799124619
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004705958453905881
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007254363099106114
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006820548495205036
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005028830229685598
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005001475681859939
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.005340377467597115
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007004962526501042
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004019519130431144
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007363972825745041
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.00491829435478663
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004053142190910329
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007799749628675176
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007597485858628057
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.007850496804575545
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.004172001447819708
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.006850650448658691
+DEBUG: 2019/04/23 13:53:20 attack.go:88: Function: sendPktsProtocol - protocol is dns, total pkts to send is 2500000 and ingress is 0 and PKT lenght is 0.0042043763930328494

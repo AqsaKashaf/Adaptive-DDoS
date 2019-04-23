@@ -5,6 +5,7 @@ import (
 	"math"
 	"math/rand"
 	"time"
+	//"fmt"
 )
 
 var dest int
@@ -68,7 +69,7 @@ func randIngress() {
 	for {
 		// go sendToRandIngress(numPkts)
 		go sendPktsProtocol(numPkts, dest, "dns")
-
+        ping(0)
 		time.Sleep(1 * time.Second)
 		dest = rand.Intn(CONFIGURATION.INGRESS_LOC)
 		// time.Sleep(time.Duration(CONFIGURATION.EPOCH_TIME) * time.Second)
@@ -106,8 +107,10 @@ func randAttackMix() {
 		ingress := 0
 
 		go sendPktsProtocol(u_numPkts, ingress, "udp")
+		ping(0)
 		// go sendPktsProtocol(t_numPkts, ingress, "tcp")
 		go sendPktsProtocol(d_numPkts, ingress, "dns")
+		
 		time.Sleep(100 * time.Millisecond)
 		// # network.sendtoNetwork(pkt)
 	}
