@@ -13,5 +13,7 @@
   "backlogSize": 256,
   "TargetProcessCapacity": 10,
   "targetBuffSize": 100000,
-  "TargetServerCapacity": 10
+  "TargetServerCapacity": 10,
+  "TargetLinkCapacity": 10,
+  "targetLinkBuffSize": 100000
 }
