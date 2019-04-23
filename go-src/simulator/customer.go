@@ -82,15 +82,19 @@ func enqueueOutgoingTarget(pkt packet) {
 
 }
 
-func dequeueTarget() packet {
+func dequeueIncomingTarget() packet {
 	return tPktQueue.Next().(packet)
+}
+
+func dequeueOutgoingTarget() packet {
+	return tOutgoingPktQueue.Next().(packet)
 }
 
 func processOutgoingTarget() {
 	bitsToDequeue := int(math.Ceil((TARGET_LINK_RESOURCES.vmQueue - TARGET_LINK_RESOURCES.availableBuffSpace)))
 
 	for bitsToDequeue >= 0 {
-		var pkt = tOutgoingPktQueue.Next().(packet)
+		var pkt = dequeueOutgoingTarget()
 
 		bitsToDequeue -= int(pkt.packet_len)
 		enqueueIncomingTarget(pkt)
