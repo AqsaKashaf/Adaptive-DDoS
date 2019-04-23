@@ -94,30 +94,33 @@ func enqueueOutgoingTarget(pkt packet) {
 }
 
 func dequeueOutgoingTarget() packet {
-	return tOutgoingQueue.Next().(packet)
+	pkt := tOutgoingQueue.Next()
+	if pkt == nil {
+		pkt = NewPacket(0, "nil", -1, false)
+	}
+	return pkt.(packet)
 }
 
 func dequeueIncomingTarget() packet {
-	return tPktQueue.Next().(packet)
-}
-
-func dequeueOutgoingTarget() packet {
-	return tOutgoingPktQueue.Next().(packet)
+	pkt := tPktQueue.Next()
+	if pkt == nil {
+		pkt = NewPacket(0, "nil", -1, false)
+	}
+	return pkt.(packet)
 }
 
 func processOutgoingTarget() {
 	bitsToDequeue := int(math.Ceil((TARGET_LINK_RESOURCES.vmQueue - TARGET_LINK_RESOURCES.availableBuffSpace)))
 
 	for bitsToDequeue >= 0 {
-        //print(bitsToDequeue)
-		var pkt packet := dequeueOutgoingTarget()
-		
-		if pkt == nil {
-		pkt = NewPacket(0, "nil", -1, false)
-		break
-    	}
-    	//return pkt.(packet)
-        
+		//print(bitsToDequeue)
+		var pkt = dequeueOutgoingTarget()
+
+		if pkt.protocol == "nil" {
+			break
+		}
+		//return pkt.(packet)
+
 		bitsToDequeue -= int(pkt.packet_len)
 		//print(bitsToDequeue)
 		enqueueIncomingTarget(pkt)
@@ -128,20 +131,19 @@ func processOutgoingTarget() {
 
 func processIncomingTarget() {
 	bitsToDequeue := int(math.Ceil((TARGET_NETWORK_RESOURCES.vmQueue - TARGET_NETWORK_RESOURCES.availableBuffSpace)))
-    
-    for bitsToDequeue >= 0 {
-        print(bitsToDequeue)
-		var pkt packet := dequeueTarget()
-		
-		if pkt == nil {
-		pkt = NewPacket(0, "nil", -1, false)
-		break
-    	}
-		
+
+	for bitsToDequeue >= 0 {
+		print(bitsToDequeue)
+		var pkt = dequeueIncomingTarget()
+
+		if pkt.protocol == "nil" {
+			break
+		}
+
 		enqueueOutgoingTarget(pkt)
 
 		if pkt.protocol == "ping" {
-			var pingPkt packet = NewPacket(64*8, "ping", 0, false)
+			var pingPkt = NewPacket(64*8, "ping", 0, false)
 			pingPkt.dest = pkt.src
 			enqueuePacket(pingPkt)
 		}
