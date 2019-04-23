@@ -14,6 +14,7 @@ func initializeTarget() {
 	_DEBUG.Printf("Function: initializeTarget")
 
 	tPktQueue = fifo.NewQueue()
+	tOutgoingQueue = fifo.NewQueue()
 	BACKLOG_TARGET = cache.New(5*time.Second, 5*time.Second)
 	queueSize := float64(CONFIGURATION.TARGET_PROCESS_CAP) * CONFIGURATION.TARGET_BUFF_SIZE
 
@@ -37,6 +38,7 @@ func initializeTarget() {
 	TARGET_LINK_RESOURCES.cap = CONFIGURATION.TARGET_LINK_CAP
 	queueLinkSize := float64(CONFIGURATION.TARGET_LINK_CAP) * CONFIGURATION.TARGET_LINK_BUFF_SIZE
 	TARGET_LINK_RESOURCES.vmQueue = queueLinkSize
+	//fmt.Println(TARGET_LINK_RESOURCES.vmQueue)
 	linkDequeueBits := int(math.Ceil(CONFIGURATION.TARGET_LINK_CAP / (CONFIGURATION.PROCESSING_DELAY)))
 
 	TARGET_LINK_RESOURCES.numOfDequeueBits = linkDequeueBits
@@ -81,6 +83,8 @@ func enqueueIncomingTarget(pkt packet) {
 func enqueueOutgoingTarget(pkt packet) {
 	if TARGET_LINK_RESOURCES.availableBuffSpace-pkt.packet_len > 0 {
 		tOutgoingQueue.Add(pkt)
+		//fmt.Println("Outgoing Queue length")
+		//fmt.Println(tOutgoingQueue.Len)
 		_DEBUG.Printf("Function: enqueueOutgoingTarget - outgoing packet added to queue")
 	} else {
 		dropPacketTarget(pkt)
@@ -101,9 +105,17 @@ func processOutgoingTarget() {
 	bitsToDequeue := int(math.Ceil((TARGET_LINK_RESOURCES.vmQueue - TARGET_LINK_RESOURCES.availableBuffSpace)))
 
 	for bitsToDequeue >= 0 {
-		var pkt = dequeueOutgoingTarget()
-
+        //print(bitsToDequeue)
+		var pkt packet := dequeueOutgoingTarget()
+		
+		if pkt == nil {
+		pkt = NewPacket(0, "nil", -1, false)
+		break
+    	}
+    	//return pkt.(packet)
+        
 		bitsToDequeue -= int(pkt.packet_len)
+		//print(bitsToDequeue)
 		enqueueIncomingTarget(pkt)
 	}
 
@@ -112,12 +124,20 @@ func processOutgoingTarget() {
 
 func processIncomingTarget() {
 	bitsToDequeue := int(math.Ceil((TARGET_NETWORK_RESOURCES.vmQueue - TARGET_NETWORK_RESOURCES.availableBuffSpace)))
-
-	for bitsToDequeue >= 0 {
-		var pkt packet = dequeueTarget()
+    
+    for bitsToDequeue >= 0 {
+        print(bitsToDequeue)
+		var pkt packet := dequeueTarget()
+		
+		if pkt == nil {
+		pkt = NewPacket(0, "nil", -1, false)
+		break
+    	}
+		
+		enqueueOutgoingTarget(pkt)
 
 		if pkt.protocol == "ping" {
-			var pingPkt packet = NewPacket(64*8, "ping", -1, false)
+			var pingPkt packet = NewPacket(64*8, "ping", 0, false)
 			pingPkt.dest = pkt.src
 			enqueuePacket(pingPkt)
 		}

@@ -20,9 +20,11 @@ func initializeDefense() {
 		var tmpCap map[string]*VM
 		tmpCap = make(map[string]*VM)
 		for _, element := range ATTACK_TYPES {
-
-			m[element] = int(math.Floor(total_num_vms * 1.0 / float64(len(ATTACK_TYPES)) * float64(CONFIGURATION.INGRESS_LOC)))
-
+		
+		
+            m[element] = int(math.Ceil(total_num_vms * 1.0 / float64(len(ATTACK_TYPES)) * float64(CONFIGURATION.INGRESS_LOC)))
+			//m[element] = int(math.Floor(total_num_vms * 1.0 / float64(len(ATTACK_TYPES)) * float64(CONFIGURATION.INGRESS_LOC)))
+            //m[element] = int(float64(len(ATTACK_TYPES)) * float64(CONFIGURATION.INGRESS_LOC))
 			// queueSize := float64(CONFIGURATION.NUM_NIC_VM) * float64(NUM_VMs[i]) * CONFIGURATION.BUFF_SIZE
 			queueSize := float64(CONFIGURATION.NUM_NIC_VM) * float64(m[element]) * CONFIGURATION.BUFF_SIZE
 
