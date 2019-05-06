@@ -6,7 +6,7 @@ import random
 
 num_ingress = 3
 ISP_Cap = 2024
-ISP_Queues = [100,100,100]
+ISP_Queues = [80,80,80]
 
 Process_Cap = 1024
 Process_Queue = 100
@@ -22,7 +22,7 @@ print(amp_factor)
 
 num_rounds = 500
 
-Max_attack_budget = 700
+Max_attack_budget = 1000
 
 tcp_size = 0.00004
 udp_size = 0.0625
@@ -243,7 +243,7 @@ if __name__ =="__main__":
         if(attack_budget<=0):
             break
         
-        new_isp_cap = min(isp_cap) + random.randint(0,100)
+        new_isp_cap = ISP_Cap + random.randint(0,100)
         isp_cap[0], isp_cap[1], isp_cap[2] = int(new_isp_cap), int(new_isp_cap), int(new_isp_cap)
         
         print("Attack {}".format(i))
@@ -271,7 +271,7 @@ if __name__ =="__main__":
         if(attack_budget<=0):
             break
         
-        new_isp_cap = min(isp_cap) + random.randint(0,100)
+        new_isp_cap = ISP_Cap + random.randint(0,100)
         isp_cap[0], isp_cap[1], isp_cap[2] = int(new_isp_cap), int(new_isp_cap), int(new_isp_cap)
         
         print("Attack {}".format(i))
@@ -311,7 +311,7 @@ if __name__ =="__main__":
         if(attack_budget<=0):
             break
         
-        new_isp_cap = min(isp_cap) + random.randint(0,100)
+        new_isp_cap = ISP_Cap + random.randint(0,100)
         isp_cap[0], isp_cap[1], isp_cap[2] = int(new_isp_cap), int(new_isp_cap), int(new_isp_cap)
         
         print("Attack {}".format(i))

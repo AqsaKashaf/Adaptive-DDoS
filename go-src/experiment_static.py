@@ -6,7 +6,7 @@ import random
 
 num_ingress = 3
 ISP_Cap = 2024
-ISP_Queues = [100,100,100]
+ISP_Queues = [80,80,80]
 
 Process_Cap = 1024
 Process_Queue = 100
