@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import time
 from itertools import *
 import random
+import threading
 
 num_ingress = 3
 ISP_Cap = 10000000
@@ -99,7 +100,6 @@ def get_tuple(length, total):
     return filter(lambda x:sum(x)==total,product(range(total+1),repeat=length))
 
 def getAttackStrategy(ISPIngress, Budget, Attack = "Smart", RTT):
-    
     attack_volume = list(get_tuple(3,100))
     #total_budget = Budget
     attack = {'TCP':0,'UDP':0,'DNS':0, 'Ingress':0}
@@ -114,17 +114,19 @@ def getAttackStrategy(ISPIngress, Budget, Attack = "Smart", RTT):
         ingress = 1
         
     elif(Attack is "RandIngress"):
-        x = np.random.randint(0,5151)
-        attack = attack_volume[x]
+        #x = np.random.randint(0,5151)
+        attack['TCP'] = 100/3
+        attack['UDP'] = 100/3 
+        attack['DNS'] = 100/3 
         ingress = np.random.randint(1,ISPIngress)
         
     else:
         rewards+= RTT
-        attack_vol, ingress = q_learn(rewards)
+        attack, ingress = q_learn(rewards)
     
-    attack['TCP'] = attack_vol[0]/100*attack_budget
-    attack['UDP'] = attack_vol[1]/100*attack_budget 
-    attack['DNS'] = attack_vol[2]/100*attack_budget 
+    attack['TCP'] = attack['TCP']/100*attack_budget
+    attack['UDP'] = attack['UDP']/100*attack_budget 
+    attack['DNS'] = attack['DNS']/100*attack_budget 
     attack['Ingress'] = ingress 
     
     return attack
@@ -146,12 +148,12 @@ def mergeTraffic():
     background, benign_traffic = BenignTraffic()
     attack = getAttackStrategy(3, Max_attack_budget, Attack = "Smart", [0,0,0,0,0,0])
     Traffic = {'TCP':0,'UDP':0,'DNS':0, 'Data':0, 'Ingress':0, 'Benign':0}
-    Traffic['TCP'] = attack['TCP'] + benign_traffic['SYN']
+    Traffic['TCP'] = attack['TCP'] + benign_traffic['SYN'] * tcp_size
     Traffic['UDP'] = attack['UDP']
     Traffic['DNS'] = attack['DNS']
     Traffic['Ingress'] = attack['Ingress']
-    Traffic['Data'] = benign_traffic['Data']
-    Traffic['Benign'] = background
+    Traffic['Data'] = benign_traffic['Data'] * udp_size
+    Traffic['Benign'] = background * udp_size
     return Traffic    
         
-    
+#threading.Thread(target=lambda: every(5, mergeTraffic)).start()
