@@ -34,6 +34,7 @@ RTT_QLearn = []
 RTT_randMix = []
 RTT_randIngressAttack = []
 
+#Q Learning Algorithm
 def q_learn(RTT):
     states = 3 + num_ingress
     actions = 5151*num_ingress
@@ -96,9 +97,12 @@ def q_learn(RTT):
     
     return x[k], int(ind[1]/5151)
 
+#Generate tuples of 3 attack volumes based on budget
 def get_tuple(length, total):
     return filter(lambda x:sum(x)==total,product(range(total+1),repeat=length))
 
+
+#Generate Attack Strategy based on Budget and Attack Type
 def getAttackStrategy(ISPIngress, Budget, Attack = "Smart", RTT):
     attack_volume = list(get_tuple(3,100))
     #total_budget = Budget
@@ -131,12 +135,14 @@ def getAttackStrategy(ISPIngress, Budget, Attack = "Smart", RTT):
     
     return attack
 
+#Simulate Firewall that drops attack traffic based on false negative percentage percent_ack
 def Firewall(attack, percent_ack):
     attack['TCP']*= (1-percent_ack)
     attack['DNS']*= (1-percent_ack)
     attack['UDP']*= (1-percent_ack)
     return attack
 
+#Generate background as well as benign traffic based on uniform distribution
 def BenignTraffic():
     background = random.uniform(1000,10000)
     benign_traffic = {'SYN':0,'DATA':0}
@@ -144,9 +150,10 @@ def BenignTraffic():
     benign_traffic['DATA'] = random.uniform(1,40)
     return background, benign_traffic
 
-def mergeTraffic():
+#Merge attack and benign traffic to produce an attack dict
+def mergeTraffic(attack):
     background, benign_traffic = BenignTraffic()
-    attack = getAttackStrategy(3, Max_attack_budget, Attack = "Smart", [0,0,0,0,0,0])
+    #attack = getAttackStrategy(3, Max_attack_budget, Attack = "Smart", [0,0,0,0,0,0]) #This function should be called from main()
     Traffic = {'TCP':0,'UDP':0,'DNS':0, 'Data':0, 'Ingress':0, 'Benign':0}
     Traffic['TCP'] = attack['TCP'] + benign_traffic['SYN'] * tcp_size
     Traffic['UDP'] = attack['UDP']
