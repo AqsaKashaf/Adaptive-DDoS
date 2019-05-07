@@ -7,7 +7,7 @@ import threading
 
 num_ingress = 3
 ISP_Cap = 10000000
-VM_Cap = 2000000
+VM_Cap = 200000
 Number_of_VMs = 2
 ISP_Queues = [80,80,80]
 
@@ -26,9 +26,9 @@ num_rounds = 500
 
 Max_attack_budget = 500000
 
-tcp_size = 0.00004
-udp_size = 0.0625
-dns_size = amp_factor * udp_size
+tcp_size = 0.000006  #TCP Packet Sizes
+udp_size = 0.0625   #UDP Packet Sizes
+dns_size = amp_factor * udp_size  #DNS Amp Size
 
 rewards = [-10,-10,-10,10,10,20]
 
@@ -36,6 +36,7 @@ RTT_QLearn = []
 RTT_randMix = []
 RTT_randIngressAttack = []
 
+#Q-Learning Algorithm
 def q_learn(RTT):
     states = 3 + num_ingress
     actions = 5151*num_ingress
@@ -101,14 +102,10 @@ def q_learn(RTT):
 def get_tuple(length, total):
     return filter(lambda x:sum(x)==total,product(range(total+1),repeat=length))
 
+#Return Attack Strategy
 def getAttackStrategy(ISPIngress, Budget, Attack = "Smart", RTT):
     attack_volume = list(get_tuple(3,100))
-    #total_budget = Budget
-    #attack = {'TCP':0,'UDP':0,'DNS':0, 'Ingress':0}
-    #while(total_budget>=0):
-    
-    #    attack_budget = random.uniform(1, total_budget)     Do all this in Main
-    #    total_budget-= attack_budget
+
     ingress = 1  
     if(Attack is "RandMix"):
         x = np.random.randint(0,5151)
@@ -129,21 +126,18 @@ def getAttackStrategy(ISPIngress, Budget, Attack = "Smart", RTT):
     
     for i in range(0,3):
         attack[ingress][i] = attack[ingress][i]/100*attack_budget
-    #attack['TCP'] = attack['TCP']/100*attack_budget
-    #attack['UDP'] = attack['UDP']/100*attack_budget 
-    #attack['DNS'] = attack['DNS']/100*attack_budget 
-    #attack['Ingress'] = ingress 
+
     
     return attack
 
+#Firewall Implementation
 def Firewall(attack, percent_ack):
     for i in range(0,3):
         attack[ingress][i] = attack[ingress][i]*(1-percent_ack)
-    #attack['TCP']*= (1-percent_ack)
-    #attack['DNS']*= (1-percent_ack)
-    #attack['UDP']*= (1-percent_ack)
+
     return attack
 
+#Benign Traffic Implementation
 def BenignTraffic():
     background = random.uniform(1000,10000)
     benign_traffic = {'SYN':0,'DATA':0}
@@ -151,17 +145,14 @@ def BenignTraffic():
     benign_traffic['DATA'] = random.uniform(1,40)
     return background, benign_traffic
 
+#Merging Attack and Benign Traffic
 def mergeTraffic(attack):
     background, benign_traffic = BenignTraffic()
+    #Get keys
     ingress = list(attack.keys())[0]
-    #attack = getAttackStrategy(3, Max_attack_budget, Attack = "Smart", [0,0,0,0,0,0])
-    Traffic = {ingress:{attack[ingress][0]+benign_traffic['SYN'],attack[ingress][1],attack[ingress][2],benign_traffic['DATA'],background}}
-    #Traffic['TCP'] = attack['TCP'] + benign_traffic['SYN'] * tcp_size
-    #Traffic['UDP'] = attack['UDP']
-    #Traffic['DNS'] = attack['DNS']
-    #Traffic['Ingress'] = attack['Ingress']
-    #Traffic['Data'] = benign_traffic['Data'] * udp_size
-    #Traffic['Benign'] = background * udp_size
+    
+    #Merge everything together
+    Traffic = {ingress:{(attack[ingress][0]+benign_traffic['SYN']) * tcp_size, attack[ingress][1]*udp_size, attack[ingress][2]*dns_size, benign_traffic['DATA'] *udp_size,background*udp_size}}
     return Traffic    
 
         
