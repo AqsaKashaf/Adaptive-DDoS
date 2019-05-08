@@ -157,9 +157,13 @@ def mergeTraffic(attack):
     background, benign_traffic = BenignTraffic()
     #Get keys
     ingress = list(attack.keys())[0]
-    
+    Traffic = {0:[0,0,0,0,0],1:[0,0,0,0,0],2:[0,0,0,0,0]}
+    for j in range(0,3):
     #Merge everything together
-    Traffic = {ingress:{attack[ingress][0]+benign_traffic['SYN'], attack[ingress][1], attack[ingress][2], benign_traffic['DATA'],background}}
+	if(j is ingress):
+    		Traffic[j]=[attack[ingress][0]+benign_traffic['SYN'], attack[ingress][1], attack[ingress][2], benign_traffic['DATA'],background]
+	else:
+		Traffic[j]=[0,0,0,benign_traffic['DATA'],background]
     return Traffic  
 
 # Calculates the congestion in the ISP queue
