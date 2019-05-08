@@ -128,8 +128,6 @@ def getAttackStrategy(ISPIngress, Budget, Attack, RTT):
         attack = {ingress:[attack[0],attack[1],attack[2]]}
     
     for i in range(0,3):
-        print(attack[ingress][i])
-
         attack[ingress][i] = attack[ingress][i]/100*attack_budget
 
     
