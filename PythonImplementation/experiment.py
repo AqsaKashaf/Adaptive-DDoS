@@ -161,7 +161,7 @@ def mergeTraffic(attack):
     for j in range(0,3):
     #Merge everything together
 	if(j is ingress):
-    		Traffic[j]=['SYN':attack[ingress][0]+benign_traffic['SYN'],'UDP':attack[ingress][1],'DNS':attack[ingress][2], 'DATA':benign_traffic['DATA'],'Background':background]
+    		Traffic[j]=['SYN':attack[ingress][0]+benign_traffic['SYN'],'UDP':attack[ingress][1],'DNS':attack[ingress][2], 'Data':benign_traffic['DATA'],'Background':background]
 	else:
 		Traffic[j]=['SYN':0,'UDP':0,'DNS':0,'Data':benign_traffic['DATA'],'Background':background]
     return Traffic  
