@@ -8,14 +8,14 @@ import threading
 num_ingress = 3
 ISP_Cap = 10000000
 VM_Cap = 200000
-Number_of_VMs = 2
-ISP_Queues = [80,80,80]
+Number_of_VMs = ISP_Cap / VM_Cap 
+ISP_Queues = [80*Number_of_VMs,80*Number_of_VMs,80*Number_of_VMs]  #MBytes
 
 Process_Cap = 200000
 Process_Queue = 100
 
 Server_Cap = 100000
-Backlog = 256
+Backlog_per_VM = 256      #Per VM
 
 Link_Cap = 500000
 Link_Queue = 100
@@ -125,7 +125,7 @@ def getAttackStrategy(ISPIngress, Budget, Attack, RTT):
         for l in range(3,6):
             rewards[l]+=RTT
         attack, ingress = q_learn(rewards)
-        attack = {ingress:[attack[0],attack[1],attack[2]]}
+        attack = {ingress:[attack[0],attack[1],attack[2]]}       #Attack[0] is TCP, Attack[1] is UDP, Attack[2] is DNS
     
     for i in range(0,3):
         attack[ingress][i] = attack[ingress][i]/100*attack_budget
@@ -134,10 +134,10 @@ def getAttackStrategy(ISPIngress, Budget, Attack, RTT):
     return attack
 
 #Firewall Implementation
-def Firewall(attack, percent_ack):
+def Firewall(attack, false_negative_rate):                           
     ingress = list(attack.keys())[0]
     for i in range(0,3):
-        attack[ingress][i] = attack[ingress][i]*(1-percent_ack)
+        attack[ingress][i] = attack[ingress][i]*(1-false_negative_rate)      #PErcentage of attack traffic that goes through
 
     return attack
 
