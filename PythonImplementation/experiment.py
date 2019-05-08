@@ -11,22 +11,22 @@ VM_Cap = 200000
 Number_of_VMs = 2
 ISP_Queues = [80,80,80]
 
-Process_Cap = 2000000
+Process_Cap = 200000
 Process_Queue = 100
 
-Server_Cap = 1000000
+Server_Cap = 100000
 Backlog = 256
 
-Link_Cap = 5000000
+Link_Cap = 500000
 Link_Queue = 100
 
 amp_factor = np.random.randint(8,13)
 
 num_rounds = 500
 
-Max_attack_budget = 500000
+Max_attack_budget = 100000
 
-tcp_size = 0.000006  #TCP Packet Sizes
+tcp_size = 0.00006  #TCP Packet Sizes
 udp_size = 0.0625   #UDP Packet Sizes
 dns_size = amp_factor * udp_size  #DNS Amp Size
 
@@ -167,7 +167,7 @@ if __name__ =="__main__":
     for i in range(0,num_rounds):
         
         RTT = 0
-        attack_budget = random.uniform(1, total_budget)
+        attack_budget = random.uniform(1000, total_budget)
         total_budget-= attack_budget
         
         for j in attack_types:
