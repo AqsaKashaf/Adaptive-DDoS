@@ -27,7 +27,7 @@ num_rounds = 500
 Max_attack_budget = 100000
 
 tcp_size = 0.00048  #TCP Packet Sizes = 60bytes
-udp_size = 0.0625   #UDP Packet Sizes = 65,535 bytes
+udp_size = 0.524280   #UDP Packet Sizes = 65,535 bytes
 dns_size = amp_factor * udp_size  #DNS Amp Size
 
 rewards = [5,5,5,10,10,20]
@@ -159,7 +159,7 @@ def mergeTraffic(attack):
     ingress = list(attack.keys())[0]
     
     #Merge everything together
-    Traffic = {ingress:{(attack[ingress][0]+benign_traffic['SYN'])*tcp_size, attack[ingress][1]*udp_size, attack[ingress][2]*dns_size, benign_traffic['DATA']*udp_size,background*udp_size}}
+    Traffic = {ingress:{attack[ingress][0]+benign_traffic['SYN'], attack[ingress][1], attack[ingress][2], benign_traffic['DATA'],background}}
     return Traffic  
 
 # Calculates the congestion in the ISP queue
