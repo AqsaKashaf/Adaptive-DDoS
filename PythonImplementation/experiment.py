@@ -9,16 +9,30 @@ num_ingress = 3
 ISP_Cap = [10000000/num_ingress, 10000000/num_ingress, 10000000/num_ingress]
 VM_Cap = 200000
 Number_of_VMs = ISP_Cap / VM_Cap 
-ISP_Queues = [80*Number_of_VMs,80*Number_of_VMs,80*Number_of_VMs]  #Mbits
+ISP_Queues = [80*Number_of_VMs, 80*Number_of_VMs, 80*Number_of_VMs]  #Mbits
+Traffic_sum = []
+packet_drops = []
+pkts_to_be_queued = []
+pkts_to_be_queued_link = 0
+pkts_to_be_queued_process = 0
+
+avail_queue_size = ISP_Queues
+
+occupied_queue_size = [0, 0, 0]
+occupied_link_queue_size = 0
+occupied_process_queue_size = 0
+link_traffic = {}
 
 Process_Cap = 200000 #Mbits
 Process_Queue = 100 #Mbits
+process_traffic = {}
 
 Server_Cap = 100000
 Backlog_per_VM = 256      #Per VM
 
 Link_Cap = 500000
 Link_Queue = 100
+avail_link_queue_size = Link_Queue
 
 amp_factor = np.random.randint(8,13)
 
@@ -167,259 +181,115 @@ def mergeTraffic(attack):
     return Traffic  
 
 # Calculates the congestion in the ISP queue
-def calculateCongestionISP(round_num, attack, traffic):
-	# round 0
-    # isp traffic per ingress all values
-    # ISP_raffic = mergeTraffic()
-    Traffic_sum = []
-    #ISP_traffic = {}
+def calculateCongestionISP(traffic):
+    rem_traffic = traffic
+    # Traffic[j] = {'SYN':0,'UDP':0,'DNS':0,'Data':benign_traffic['DATA'],'Background':background}
     for i in range(num_ingress):  
-        #ISP_traffic[i] = {'TCP':0,'UDP':0,'DNS':0, 'Data':0, 'Background':0}
         Traffic_sum[i] = sum(traffic[i].values())
-    
-    # target traffic sum of all ingress isp traffics
-	Rem_traffic = traffic
-    pkts_queued = traffic
-    pkts_in_queue = traffic
+        pkts_to_be_queued[i] = Traffic_sum[i] + occupied_queue_size[i] - ISP_Cap[i]
+        P_syn = traffic[i]['SYN']/Traffic_sum[i]
+        P_udp = traffic[i]['UDP']/Traffic_sum[i]
+        P_dns = traffic[i]['DNS']/Traffic_sum[i]
+        P_data = traffic[i]['Data']/Traffic_sum[i]
+        P_bg = traffic[i]['Background']/Traffic_sum[i]        
 
-    if round_num == 0:
-        for i in range(num_ingress):      
-            avail_queue_size[i] = ISP_Queues[i]
-            last_queue_size[i] = avail_queue_size[i]
-            for key in traffic[i]:
-            if attack[key] > ISP_Queues[i]:
-                pkts_queued[i][key] = attack[key] - ISP_Queues[i]
-                if pkts_queued[i][key] > avail_queue_size[i]:
-                    pkts_dropped[i][key] = pkts_queued[i][key] - avail_queue_size[i]
-                    pkts_in_queue[i][key] = pkts_queued[i][key] - pkts_dropped[i][key]
-                    avail_queue_size[i] = last_queue_size[i] - pkts_in_queue[i][key]
-        
-                    a = traffic[i][key]/Traffic_sum[i]
-                    last_queue_size[i] = avail_queue_size[i]
-                    # avail_queue_size[i] -= 
-                    Rem_traffic[i][key] = traffic[i][key] - pkts_dropped[i][key]*a
-                else:
-                    pkts_dropped[i][key] = 0
-                    pkts_in_queue[i][key] = pkts_queued[i][key]
-                    avail_queue_size[i] = last_queue_size[i] - pkts_in_queue[i][key]
+        if pkts_to_be_queued[i] <= ISP_Queues[i]:
+            packet_drops[i] = 0
+            occupied_queue_size[i] = pkts_to_be_queued[i]
+            rem_traffic[i]['SYN'] = traffic[i]['SYN'] - P_syn*occupied_queue_size[i]
+            rem_traffic[i]['UDP'] = traffic[i]['UDP'] - P_udp*occupied_queue_size[i]
+            rem_traffic[i]['DNS'] = traffic[i]['DNS'] - P_dns*occupied_queue_size[i]
+            rem_traffic[i]['Data'] = traffic[i]['Data'] - P_data*occupied_queue_size[i]
+            rem_traffic[i]['Background'] = traffic[i]['Background'] - P_bg*occupied_queue_size[i]
 
-                    a = traffic[i][key]/Traffic_sum[i]
-                    last_queue_size[i] = avail_queue_size[i]
-                    Rem_traffic[i][key] = traffic[i][key]
-            else:
-                pkts_queued[i][key] = 0
-                pkts_dropped[i][key] = 0
-                pkts_in_queue[i][key] = 0
+        if pkts_to_be_queued[i] > ISP_Queues[i]:
+            packet_drops[i] = pkts_to_be_queued[i] - ISP_Queues[i]
+            occupied_queue_size[i] = ISP_Queues[i]
+            rem_traffic[i]['SYN'] = traffic[i]['SYN'] - P_syn*(occupied_queue_size[i] + packet_drops[i])
+            rem_traffic[i]['UDP'] = traffic[i]['UDP'] - P_udp*(occupied_queue_size[i] + packet_drops[i])
+            rem_traffic[i]['DNS'] = traffic[i]['DNS'] - P_dns*(occupied_queue_size[i] + packet_drops[i])
+            rem_traffic[i]['Data'] = traffic[i]['Data'] - P_data*(occupied_queue_size[i] + packet_drops[i])
+            rem_traffic[i]['Background'] = traffic[i]['Background'] - P_bg*(occupied_queue_size[i] + packet_drops[i])
 
-                a = traffic[i][key]/Traffic_sum[i]
-                last_queue_size[i] = avail_queue_size[i]
-                Rem_traffic[i][key] = traffic[i][key]
+        avail_queue_size[i] = ISP_Queues[i] - occupied_queue_size[i]
 
-	# rounds 1 to n	
-	else:
-		for i in range(num_ingress):
-            #avail_queue_size[i] = ISP_Queues[i]
-            #last_queue_size[i] = avail_queue_size[i]
-            for key in traffic[i]:
-            if attack[key] > ISP_Queues[i]:
-                pkts_queued[i][key] = attack[key] - ISP_Queues[i]
-                if pkts_queued[i][key] > avail_queue_size[i]:
-                    pkts_dropped[i][key] = pkts_queued[i][key] - avail_queue_size[i]
-                    pkts_in_queue[i][key] = pkts_queued[i][key] - pkts_dropped[i][key]
-                    avail_queue_size[i] = last_queue_size[i] - pkts_in_queue[i][key]
-        
-                    a = traffic[i][key]/Traffic_sum[i]
-                    last_queue_size[i] = avail_queue_size[i]
-                    # avail_queue_size[i] -= 
-                    Rem_traffic[i][key] = traffic[i][key] - pkts_dropped[i][key]*a
-                else:
-                    pkts_dropped[i][key] = 0
-                    pkts_in_queue[i][key] = pkts_queued[i][key]
-                    avail_queue_size[i] = last_queue_size[i] - pkts_in_queue[i][key]
-
-                    a = traffic[i][key]/Traffic_sum[i]
-                    last_queue_size[i] = avail_queue_size[i]
-                    Rem_traffic[i][key] = traffic[i][key]
-            else:
-                pkts_queued[i][key] = 0
-                pkts_dropped[i][key] = 0
-                pkts_in_queue[i][key] = 0
-                
-                a = traffic[i][key]/Traffic_sum[i]
-                last_queue_size[i] = avail_queue_size[i]
-                Rem_traffic[i][key] = traffic[i][key]
-
-    return avail_queue_size, Rem_traffic
+    return avail_queue_size, rem_traffic
 	
 # Calculates the congestion in the Link queue
-def calculateCongestionLink(round_num, attack, traffic):
-	# round 0
-    # isp traffic per ingress all values
-    # ISP_raffic = mergeTraffic()
-    Traffic_sum = []
-    #ISP_traffic = {}
+def calculateCongestionLink(traffic):
+	rem_link_traffic = link_traffic
+
     for i in range(num_ingress):  
-        #ISP_traffic[i] = {'TCP':0,'UDP':0,'DNS':0, 'Data':0, 'Background':0}
-        Traffic_sum[i] = sum(traffic[i].values())
-    
-    # target traffic sum of all ingress isp traffics
-	Rem_traffic = traffic
-    pkts_queued = traffic
-    pkts_in_queue = traffic
+        link_traffic['SYN'] += traffic[i]['SYN']
+        link_traffic['UDP'] += traffic[i]['UDP']
+        link_traffic['DNS'] += traffic[i]['DNS']
+        link_traffic['Data'] += traffic[i]['Data']
 
-    if round_num == 0:
-        for i in range(num_ingress):      
-            avail_queue_size[i] = ISP_Queues[i]
-            last_queue_size[i] = avail_queue_size[i]
-            for key in traffic[i]:
-            if attack[key] > ISP_Queues[i]:
-                pkts_queued[i][key] = attack[key] - ISP_Queues[i]
-                if pkts_queued[i][key] > avail_queue_size[i]:
-                    pkts_dropped[i][key] = pkts_queued[i][key] - avail_queue_size[i]
-                    pkts_in_queue[i][key] = pkts_queued[i][key] - pkts_dropped[i][key]
-                    avail_queue_size[i] = last_queue_size[i] - pkts_in_queue[i][key]
+    total_link_traffic = sum(link_traffic.values())
+
+    pkts_to_be_queued_link = total_link_traffic + occupied_link_queue_size - Link_Cap
+    P_syn = link_traffic['SYN']/total_link_traffic
+    P_udp = link_traffic['UDP']/total_link_traffic
+    P_dns = link_traffic['DNS']/total_link_traffic
+    P_data = link_traffic['Data']/total_link_traffic     
+
+    if pkts_to_be_queued_link <= Link_Queue:
+        packet_drops_link = 0
+        occupied_link_queue_size = pkts_to_be_queued_link
+        rem_link_traffic['SYN'] = link_traffic['SYN'] - P_syn*occupied_link_queue_size
+        rem_link_traffic['UDP'] = link_traffic['UDP'] - P_udp*occupied_link_queue_size
+        rem_link_traffic['DNS'] = link_traffic['DNS'] - P_dns*occupied_link_queue_size
+        rem_link_traffic['Data'] = link_traffic['Data'] - P_data*occupied_link_queue_size
         
-                    a = traffic[i][key]/Traffic_sum[i]
-                    last_queue_size[i] = avail_queue_size[i]
-                    # avail_queue_size[i] -= 
-                    Rem_traffic[i][key] = traffic[i][key] - pkts_dropped[i][key]*a
-                else:
-                    pkts_dropped[i][key] = 0
-                    pkts_in_queue[i][key] = pkts_queued[i][key]
-                    avail_queue_size[i] = last_queue_size[i] - pkts_in_queue[i][key]
+    if pkts_to_be_queued_link > Link_Queue:
+        packet_drops_link = pkts_to_be_queued_link - Link_Queue
+        occupied_link_queue_size = Link_Queue
+        rem_link_traffic['SYN'] = link_traffic['SYN'] - P_syn*(occupied_link_queue_size+packet_drops_link)
+        rem_link_traffic['UDP'] = link_traffic['UDP'] - P_udp*(occupied_link_queue_size+packet_drops_link)
+        rem_link_traffic['DNS'] = link_traffic['DNS'] - P_dns*(occupied_link_queue_size+packet_drops_link)
+        rem_link_traffic['Data'] = link_traffic['Data'] - P_data*(occupied_link_queue_size+packet_drops_link)
 
-                    a = traffic[i][key]/Traffic_sum[i]
-                    last_queue_size[i] = avail_queue_size[i]
-                    Rem_traffic[i][key] = traffic[i][key]
-            else:
-                pkts_queued[i][key] = 0
-                pkts_dropped[i][key] = 0
-                pkts_in_queue[i][key] = 0
+    avail_link_queue_size = Link_Queue - occupied_link_queue_size
 
-                a = traffic[i][key]/Traffic_sum[i]
-                last_queue_size[i] = avail_queue_size[i]
-                Rem_traffic[i][key] = traffic[i][key]
-
-	# rounds 1 to n	
-	else:
-		for i in range(num_ingress):
-            #avail_queue_size[i] = ISP_Queues[i]
-            #last_queue_size[i] = avail_queue_size[i]
-            for key in traffic[i]:
-            if attack[key] > ISP_Queues[i]:
-                pkts_queued[i][key] = attack[key] - ISP_Queues[i]
-                if pkts_queued[i][key] > avail_queue_size[i]:
-                    pkts_dropped[i][key] = pkts_queued[i][key] - avail_queue_size[i]
-                    pkts_in_queue[i][key] = pkts_queued[i][key] - pkts_dropped[i][key]
-                    avail_queue_size[i] = last_queue_size[i] - pkts_in_queue[i][key]
-        
-                    a = traffic[i][key]/Traffic_sum[i]
-                    last_queue_size[i] = avail_queue_size[i]
-                    # avail_queue_size[i] -= 
-                    Rem_traffic[i][key] = traffic[i][key] - pkts_dropped[i][key]*a
-                else:
-                    pkts_dropped[i][key] = 0
-                    pkts_in_queue[i][key] = pkts_queued[i][key]
-                    avail_queue_size[i] = last_queue_size[i] - pkts_in_queue[i][key]
-
-                    a = traffic[i][key]/Traffic_sum[i]
-                    last_queue_size[i] = avail_queue_size[i]
-                    Rem_traffic[i][key] = traffic[i][key]
-            else:
-                pkts_queued[i][key] = 0
-                pkts_dropped[i][key] = 0
-                pkts_in_queue[i][key] = 0
-                
-                a = traffic[i][key]/Traffic_sum[i]
-                last_queue_size[i] = avail_queue_size[i]
-                Rem_traffic[i][key] = traffic[i][key]
-
-    return avail_queue_size, Rem_traffic
+    return avail_link_queue_size, rem_link_traffic
 		
-# Calculates the congestion in the target queue
-def calculateCongestionProcess(round_num, attack, traffic):
-	# round 0
-    # isp traffic per ingress all values
-    # ISP_raffic = mergeTraffic()
-    Traffic_sum = []
-    #ISP_traffic = {}
+# Calculates the congestion in the target process queue
+def calculateCongestionProcess(traffic):
+	rem_process_traffic = process_traffic
+
     for i in range(num_ingress):  
-        #ISP_traffic[i] = {'TCP':0,'UDP':0,'DNS':0, 'Data':0, 'Background':0}
-        Traffic_sum[i] = sum(traffic[i].values())
-    
-    # target traffic sum of all ingress isp traffics
-	Rem_traffic = traffic
-    pkts_queued = traffic
-    pkts_in_queue = traffic
+        process_traffic['SYN'] += traffic[i]['SYN']
+        process_traffic['UDP'] += traffic[i]['UDP']
+        process_traffic['DNS'] += traffic[i]['DNS']
+        process_traffic['Data'] += traffic[i]['Data']
 
-    if round_num == 0:
-        for i in range(num_ingress):      
-            avail_queue_size[i] = ISP_Queues[i]
-            last_queue_size[i] = avail_queue_size[i]
-            for key in traffic[i]:
-            if attack[key] > ISP_Queues[i]:
-                pkts_queued[i][key] = attack[key] - ISP_Queues[i]
-                if pkts_queued[i][key] > avail_queue_size[i]:
-                    pkts_dropped[i][key] = pkts_queued[i][key] - avail_queue_size[i]
-                    pkts_in_queue[i][key] = pkts_queued[i][key] - pkts_dropped[i][key]
-                    avail_queue_size[i] = last_queue_size[i] - pkts_in_queue[i][key]
+    total_process_traffic = sum(process_traffic.values())
+
+    pkts_to_be_queued_process = total_process_traffic + occupied_process_queue_size - Process_Cap
+    P_syn = process_traffic['SYN']/total_process_traffic
+    P_udp = process_traffic['UDP']/total_process_traffic
+    P_dns = process_traffic['DNS']/total_process_traffic
+    P_data = process_traffic['Data']/total_process_traffic     
+
+    if pkts_to_be_queued_process <= Process_Queue:
+        packet_drops_process = 0
+        occupied_process_queue_size = pkts_to_be_queued_process
+        rem_process_traffic['SYN'] = process_traffic['SYN'] - P_syn*occupied_process_queue_size
+        rem_process_traffic['UDP'] = process_traffic['UDP'] - P_udp*occupied_process_queue_size
+        rem_process_traffic['DNS'] = process_traffic['DNS'] - P_dns*occupied_process_queue_size
+        rem_process_traffic['Data'] = process_traffic['Data'] - P_data*occupied_process_queue_size
         
-                    a = traffic[i][key]/Traffic_sum[i]
-                    last_queue_size[i] = avail_queue_size[i]
-                    # avail_queue_size[i] -= 
-                    Rem_traffic[i][key] = traffic[i][key] - pkts_dropped[i][key]*a
-                else:
-                    pkts_dropped[i][key] = 0
-                    pkts_in_queue[i][key] = pkts_queued[i][key]
-                    avail_queue_size[i] = last_queue_size[i] - pkts_in_queue[i][key]
+    if pkts_to_be_queued_link > Process_Queue:
+        packet_drops_process = pkts_to_be_queued_process - Process_Queue
+        occupied_process_queue_size = Process_Queue
+        rem_process_traffic['SYN'] = process_traffic['SYN'] - P_syn*(occupied_process_queue_size+packet_drops_process)
+        rem_process_traffic['UDP'] = process_traffic['UDP'] - P_udp*(occupied_process_queue_size+packet_drops_process)
+        rem_process_traffic['DNS'] = process_traffic['DNS'] - P_dns*(occupied_process_queue_size+packet_drops_process)
+        rem_process_traffic['Data'] = process_traffic['Data'] - P_data*(occupied_process_queue_size+packet_drops_process)
 
-                    a = traffic[i][key]/Traffic_sum[i]
-                    last_queue_size[i] = avail_queue_size[i]
-                    Rem_traffic[i][key] = traffic[i][key]
-            else:
-                pkts_queued[i][key] = 0
-                pkts_dropped[i][key] = 0
-                pkts_in_queue[i][key] = 0
+    avail_process_queue_size = Process_Queue - occupied_process_queue_size
 
-                a = traffic[i][key]/Traffic_sum[i]
-                last_queue_size[i] = avail_queue_size[i]
-                Rem_traffic[i][key] = traffic[i][key]
-
-	# rounds 1 to n	
-	else:
-		for i in range(num_ingress):
-            #avail_queue_size[i] = ISP_Queues[i]
-            #last_queue_size[i] = avail_queue_size[i]
-            for key in traffic[i]:
-            if attack[key] > ISP_Queues[i]:
-                pkts_queued[i][key] = attack[key] - ISP_Queues[i]
-                if pkts_queued[i][key] > avail_queue_size[i]:
-                    pkts_dropped[i][key] = pkts_queued[i][key] - avail_queue_size[i]
-                    pkts_in_queue[i][key] = pkts_queued[i][key] - pkts_dropped[i][key]
-                    avail_queue_size[i] = last_queue_size[i] - pkts_in_queue[i][key]
-        
-                    a = traffic[i][key]/Traffic_sum[i]
-                    last_queue_size[i] = avail_queue_size[i]
-                    # avail_queue_size[i] -= 
-                    Rem_traffic[i][key] = traffic[i][key] - pkts_dropped[i][key]*a
-                else:
-                    pkts_dropped[i][key] = 0
-                    pkts_in_queue[i][key] = pkts_queued[i][key]
-                    avail_queue_size[i] = last_queue_size[i] - pkts_in_queue[i][key]
-
-                    a = traffic[i][key]/Traffic_sum[i]
-                    last_queue_size[i] = avail_queue_size[i]
-                    Rem_traffic[i][key] = traffic[i][key]
-            else:
-                pkts_queued[i][key] = 0
-                pkts_dropped[i][key] = 0
-                pkts_in_queue[i][key] = 0
-                
-                a = traffic[i][key]/Traffic_sum[i]
-                last_queue_size[i] = avail_queue_size[i]
-                Rem_traffic[i][key] = traffic[i][key]
-
-    return avail_queue_size, Rem_traffic
+    return avail_process_queue_size, rem_process_traffic
 
 if __name__ =="__main__":
     
@@ -438,11 +308,11 @@ if __name__ =="__main__":
             Traffic = mergeTraffic(attack_vol)
             print(Traffic)
             
-            rem_ISP_queue, Traffic = calculateCongestionISP(i, attack, Traffic)
+            rem_ISP_queue, Traffic = calculateCongestionISP(attack, Traffic)
 
-            rem_link_queue, Traffic = calculateCongestionLink(i, attack, Traffic)
+            rem_link_queue, Traffic = calculateCongestionLink(attack, Traffic)
 
-            rem_process_queue, Traffic = calculateCongestionProcess(i, attack, Traffic)
+            rem_process_queue, Traffic = calculateCongestionProcess(attack, Traffic)
             #Create your own functions
 
         
