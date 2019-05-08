@@ -6,7 +6,7 @@ import random
 import threading
 
 num_ingress = 3
-ISP_Cap = 10000000
+ISP_Cap = [10000000/num_ingress, 10000000/num_ingress, 10000000/num_ingress]
 VM_Cap = 200000
 Number_of_VMs = ISP_Cap / VM_Cap 
 ISP_Queues = [80*Number_of_VMs,80*Number_of_VMs,80*Number_of_VMs]  #Mbits
