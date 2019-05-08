@@ -159,6 +159,261 @@ def mergeTraffic(attack):
     Traffic = {ingress:{(attack[ingress][0]+benign_traffic['SYN'])*tcp_size, attack[ingress][1]*udp_size, attack[ingress][2]*dns_size, benign_traffic['DATA']*udp_size,background*udp_size}}
     return Traffic  
 
+# Calculates the congestion in the ISP queue
+def calculateCongestionISP(attack, traffic):
+	# round 0
+    # isp traffic per ingress all values
+    # ISP_raffic = mergeTraffic()
+    Traffic_sum = []
+    #ISP_traffic = {}
+    for i in range(num_ingress):  
+        #ISP_traffic[i] = {'TCP':0,'UDP':0,'DNS':0, 'Data':0, 'Background':0}
+        Traffic_sum[i] = sum(traffic[i].values())
+    
+    # target traffic sum of all ingress isp traffics
+	Rem_traffic = traffic
+    pkts_queued = traffic
+    pkts_in_queue = traffic
+
+    if round_num == 0:
+        for i in range(num_ingress):      
+            avail_queue_size[i] = ISP_Queues[i]
+            last_queue_size[i] = avail_queue_size[i]
+            for key in traffic[i]:
+            if attack[key] > ISP_Queues[i]:
+                pkts_queued[i][key] = attack[key] - ISP_Queues[i]
+                if pkts_queued[i][key] > avail_queue_size[i]:
+                    pkts_dropped[i][key] = pkts_queued[i][key] - avail_queue_size[i]
+                    pkts_in_queue[i][key] = pkts_queued[i][key] - pkts_dropped[i][key]
+                    avail_queue_size[i] = last_queue_size[i] - pkts_in_queue[i][key]
+        
+                    a = traffic[i][key]/Traffic_sum[i]
+                    last_queue_size[i] = avail_queue_size[i]
+                    # avail_queue_size[i] -= 
+                    Rem_traffic[i][key] = traffic[i][key] - pkts_dropped[i][key]*a
+                else:
+                    pkts_dropped[i][key] = 0
+                    pkts_in_queue[i][key] = pkts_queued[i][key]
+                    avail_queue_size[i] = last_queue_size[i] - pkts_in_queue[i][key]
+
+                    a = traffic[i][key]/Traffic_sum[i]
+                    last_queue_size[i] = avail_queue_size[i]
+                    Rem_traffic[i][key] = traffic[i][key]
+            else:
+                pkts_queued[i][key] = 0
+                pkts_dropped[i][key] = 0
+                pkts_in_queue[i][key] = 0
+
+                a = traffic[i][key]/Traffic_sum[i]
+                last_queue_size[i] = avail_queue_size[i]
+                Rem_traffic[i][key] = traffic[i][key]
+
+	# rounds 1 to n	
+	else:
+		for i in range(num_ingress):
+            #avail_queue_size[i] = ISP_Queues[i]
+            #last_queue_size[i] = avail_queue_size[i]
+            for key in traffic[i]:
+            if attack[key] > ISP_Queues[i]:
+                pkts_queued[i][key] = attack[key] - ISP_Queues[i]
+                if pkts_queued[i][key] > avail_queue_size[i]:
+                    pkts_dropped[i][key] = pkts_queued[i][key] - avail_queue_size[i]
+                    pkts_in_queue[i][key] = pkts_queued[i][key] - pkts_dropped[i][key]
+                    avail_queue_size[i] = last_queue_size[i] - pkts_in_queue[i][key]
+        
+                    a = traffic[i][key]/Traffic_sum[i]
+                    last_queue_size[i] = avail_queue_size[i]
+                    # avail_queue_size[i] -= 
+                    Rem_traffic[i][key] = traffic[i][key] - pkts_dropped[i][key]*a
+                else:
+                    pkts_dropped[i][key] = 0
+                    pkts_in_queue[i][key] = pkts_queued[i][key]
+                    avail_queue_size[i] = last_queue_size[i] - pkts_in_queue[i][key]
+
+                    a = traffic[i][key]/Traffic_sum[i]
+                    last_queue_size[i] = avail_queue_size[i]
+                    Rem_traffic[i][key] = traffic[i][key]
+            else:
+                pkts_queued[i][key] = 0
+                pkts_dropped[i][key] = 0
+                pkts_in_queue[i][key] = 0
+                
+                a = traffic[i][key]/Traffic_sum[i]
+                last_queue_size[i] = avail_queue_size[i]
+                Rem_traffic[i][key] = traffic[i][key]
+
+    return avail_queue_size, Rem_traffic
+	
+# Calculates the congestion in the Link queue
+def calculateCongestionLink(attack, traffic):
+	# round 0
+    # isp traffic per ingress all values
+    # ISP_raffic = mergeTraffic()
+    Traffic_sum = []
+    #ISP_traffic = {}
+    for i in range(num_ingress):  
+        #ISP_traffic[i] = {'TCP':0,'UDP':0,'DNS':0, 'Data':0, 'Background':0}
+        Traffic_sum[i] = sum(traffic[i].values())
+    
+    # target traffic sum of all ingress isp traffics
+	Rem_traffic = traffic
+    pkts_queued = traffic
+    pkts_in_queue = traffic
+
+    if round_num == 0:
+        for i in range(num_ingress):      
+            avail_queue_size[i] = ISP_Queues[i]
+            last_queue_size[i] = avail_queue_size[i]
+            for key in traffic[i]:
+            if attack[key] > ISP_Queues[i]:
+                pkts_queued[i][key] = attack[key] - ISP_Queues[i]
+                if pkts_queued[i][key] > avail_queue_size[i]:
+                    pkts_dropped[i][key] = pkts_queued[i][key] - avail_queue_size[i]
+                    pkts_in_queue[i][key] = pkts_queued[i][key] - pkts_dropped[i][key]
+                    avail_queue_size[i] = last_queue_size[i] - pkts_in_queue[i][key]
+        
+                    a = traffic[i][key]/Traffic_sum[i]
+                    last_queue_size[i] = avail_queue_size[i]
+                    # avail_queue_size[i] -= 
+                    Rem_traffic[i][key] = traffic[i][key] - pkts_dropped[i][key]*a
+                else:
+                    pkts_dropped[i][key] = 0
+                    pkts_in_queue[i][key] = pkts_queued[i][key]
+                    avail_queue_size[i] = last_queue_size[i] - pkts_in_queue[i][key]
+
+                    a = traffic[i][key]/Traffic_sum[i]
+                    last_queue_size[i] = avail_queue_size[i]
+                    Rem_traffic[i][key] = traffic[i][key]
+            else:
+                pkts_queued[i][key] = 0
+                pkts_dropped[i][key] = 0
+                pkts_in_queue[i][key] = 0
+
+                a = traffic[i][key]/Traffic_sum[i]
+                last_queue_size[i] = avail_queue_size[i]
+                Rem_traffic[i][key] = traffic[i][key]
+
+	# rounds 1 to n	
+	else:
+		for i in range(num_ingress):
+            #avail_queue_size[i] = ISP_Queues[i]
+            #last_queue_size[i] = avail_queue_size[i]
+            for key in traffic[i]:
+            if attack[key] > ISP_Queues[i]:
+                pkts_queued[i][key] = attack[key] - ISP_Queues[i]
+                if pkts_queued[i][key] > avail_queue_size[i]:
+                    pkts_dropped[i][key] = pkts_queued[i][key] - avail_queue_size[i]
+                    pkts_in_queue[i][key] = pkts_queued[i][key] - pkts_dropped[i][key]
+                    avail_queue_size[i] = last_queue_size[i] - pkts_in_queue[i][key]
+        
+                    a = traffic[i][key]/Traffic_sum[i]
+                    last_queue_size[i] = avail_queue_size[i]
+                    # avail_queue_size[i] -= 
+                    Rem_traffic[i][key] = traffic[i][key] - pkts_dropped[i][key]*a
+                else:
+                    pkts_dropped[i][key] = 0
+                    pkts_in_queue[i][key] = pkts_queued[i][key]
+                    avail_queue_size[i] = last_queue_size[i] - pkts_in_queue[i][key]
+
+                    a = traffic[i][key]/Traffic_sum[i]
+                    last_queue_size[i] = avail_queue_size[i]
+                    Rem_traffic[i][key] = traffic[i][key]
+            else:
+                pkts_queued[i][key] = 0
+                pkts_dropped[i][key] = 0
+                pkts_in_queue[i][key] = 0
+                
+                a = traffic[i][key]/Traffic_sum[i]
+                last_queue_size[i] = avail_queue_size[i]
+                Rem_traffic[i][key] = traffic[i][key]
+
+    return avail_queue_size, Rem_traffic
+		
+# Calculates the congestion in the target queue
+def calculateCongestionProcess(attack, traffic):
+	# round 0
+    # isp traffic per ingress all values
+    # ISP_raffic = mergeTraffic()
+    Traffic_sum = []
+    #ISP_traffic = {}
+    for i in range(num_ingress):  
+        #ISP_traffic[i] = {'TCP':0,'UDP':0,'DNS':0, 'Data':0, 'Background':0}
+        Traffic_sum[i] = sum(traffic[i].values())
+    
+    # target traffic sum of all ingress isp traffics
+	Rem_traffic = traffic
+    pkts_queued = traffic
+    pkts_in_queue = traffic
+
+    if round_num == 0:
+        for i in range(num_ingress):      
+            avail_queue_size[i] = ISP_Queues[i]
+            last_queue_size[i] = avail_queue_size[i]
+            for key in traffic[i]:
+            if attack[key] > ISP_Queues[i]:
+                pkts_queued[i][key] = attack[key] - ISP_Queues[i]
+                if pkts_queued[i][key] > avail_queue_size[i]:
+                    pkts_dropped[i][key] = pkts_queued[i][key] - avail_queue_size[i]
+                    pkts_in_queue[i][key] = pkts_queued[i][key] - pkts_dropped[i][key]
+                    avail_queue_size[i] = last_queue_size[i] - pkts_in_queue[i][key]
+        
+                    a = traffic[i][key]/Traffic_sum[i]
+                    last_queue_size[i] = avail_queue_size[i]
+                    # avail_queue_size[i] -= 
+                    Rem_traffic[i][key] = traffic[i][key] - pkts_dropped[i][key]*a
+                else:
+                    pkts_dropped[i][key] = 0
+                    pkts_in_queue[i][key] = pkts_queued[i][key]
+                    avail_queue_size[i] = last_queue_size[i] - pkts_in_queue[i][key]
+
+                    a = traffic[i][key]/Traffic_sum[i]
+                    last_queue_size[i] = avail_queue_size[i]
+                    Rem_traffic[i][key] = traffic[i][key]
+            else:
+                pkts_queued[i][key] = 0
+                pkts_dropped[i][key] = 0
+                pkts_in_queue[i][key] = 0
+
+                a = traffic[i][key]/Traffic_sum[i]
+                last_queue_size[i] = avail_queue_size[i]
+                Rem_traffic[i][key] = traffic[i][key]
+
+	# rounds 1 to n	
+	else:
+		for i in range(num_ingress):
+            #avail_queue_size[i] = ISP_Queues[i]
+            #last_queue_size[i] = avail_queue_size[i]
+            for key in traffic[i]:
+            if attack[key] > ISP_Queues[i]:
+                pkts_queued[i][key] = attack[key] - ISP_Queues[i]
+                if pkts_queued[i][key] > avail_queue_size[i]:
+                    pkts_dropped[i][key] = pkts_queued[i][key] - avail_queue_size[i]
+                    pkts_in_queue[i][key] = pkts_queued[i][key] - pkts_dropped[i][key]
+                    avail_queue_size[i] = last_queue_size[i] - pkts_in_queue[i][key]
+        
+                    a = traffic[i][key]/Traffic_sum[i]
+                    last_queue_size[i] = avail_queue_size[i]
+                    # avail_queue_size[i] -= 
+                    Rem_traffic[i][key] = traffic[i][key] - pkts_dropped[i][key]*a
+                else:
+                    pkts_dropped[i][key] = 0
+                    pkts_in_queue[i][key] = pkts_queued[i][key]
+                    avail_queue_size[i] = last_queue_size[i] - pkts_in_queue[i][key]
+
+                    a = traffic[i][key]/Traffic_sum[i]
+                    last_queue_size[i] = avail_queue_size[i]
+                    Rem_traffic[i][key] = traffic[i][key]
+            else:
+                pkts_queued[i][key] = 0
+                pkts_dropped[i][key] = 0
+                pkts_in_queue[i][key] = 0
+                
+                a = traffic[i][key]/Traffic_sum[i]
+                last_queue_size[i] = avail_queue_size[i]
+                Rem_traffic[i][key] = traffic[i][key]
+
+    return avail_queue_size, Rem_traffic
+
 if __name__ =="__main__":
     
     print("Simulator Start!")
@@ -175,6 +430,12 @@ if __name__ =="__main__":
             attack_vol = Firewall(attack_vol, 0.6)
             Traffic = mergeTraffic(attack_vol)
             print(Traffic)
+            
+            rem_ISP_queue, Traffic = calculateCongestionISP(attack, Traffic)
+
+            rem_link_queue, Traffic = calculateCongestionLink(attack, Traffic)
+
+            rem_process_queue, Traffic = calculateCongestionProcess(attack, Traffic)
             #Create your own functions
 
         
