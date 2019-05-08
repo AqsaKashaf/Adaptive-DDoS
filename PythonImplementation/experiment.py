@@ -9,10 +9,10 @@ num_ingress = 3
 ISP_Cap = 10000000
 VM_Cap = 200000
 Number_of_VMs = ISP_Cap / VM_Cap 
-ISP_Queues = [80*Number_of_VMs,80*Number_of_VMs,80*Number_of_VMs]  #MBytes
+ISP_Queues = [80*Number_of_VMs,80*Number_of_VMs,80*Number_of_VMs]  #Mbits
 
-Process_Cap = 200000
-Process_Queue = 100
+Process_Cap = 200000 #Mbits
+Process_Queue = 100 #Mbits
 
 Server_Cap = 100000
 Backlog_per_VM = 256      #Per VM
@@ -26,11 +26,11 @@ num_rounds = 500
 
 Max_attack_budget = 100000
 
-tcp_size = 0.00006  #TCP Packet Sizes
-udp_size = 0.0625   #UDP Packet Sizes
+tcp_size = 0.00048  #TCP Packet Sizes = 60bytes
+udp_size = 0.0625   #UDP Packet Sizes = 65,535 bytes
 dns_size = amp_factor * udp_size  #DNS Amp Size
 
-rewards = [-10,-10,-10,10,10,20]
+rewards = [5,5,5,10,10,20]
 
 RTT_QLearn = []
 RTT_randMix = []
@@ -145,8 +145,11 @@ def Firewall(attack, false_negative_rate):
 def BenignTraffic():
     background = random.uniform(1000,10000)
     benign_traffic = {'SYN':0,'DATA':0}
-    benign_traffic['SYN'] = random.uniform(70,100)
-    benign_traffic['DATA'] = random.uniform(1,40)
+    #Total Connections = Page views per user * Number of users of the website (5.54 * 1821.6*10^3)
+    #Number of users of the website = (Reach per million * total internet users)/10^6 = (414*4.4*10^9)/10^6
+    benign_traffic['SYN'] = random.normal(10092000,3129000)
+    #Assuming the data traffic is 5 times the SYN connections received
+    benign_traffic['DATA'] = random.normal(10092000,3129000)*5
     return background, benign_traffic
 
 #Merging Attack and Benign Traffic
