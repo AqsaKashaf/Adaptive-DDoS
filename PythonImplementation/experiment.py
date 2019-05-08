@@ -120,7 +120,10 @@ def getAttackStrategy(ISPIngress, Budget, Attack = "Smart", RTT):
         attack = {ingress:[attack_tcp,attack_udp,attack_dns]}
         
     else:
-        rewards+= RTT
+        for l in range(0,3):
+            rewards[l]-=RTT
+        for l in range(3,6):
+            rewards[l]+=RTT
         attack, ingress = q_learn(rewards)
         attack = {ingress:[attack[0],attack[1],attack[2]]}
     
@@ -153,7 +156,25 @@ def mergeTraffic(attack):
     
     #Merge everything together
     Traffic = {ingress:{(attack[ingress][0]+benign_traffic['SYN']) * tcp_size, attack[ingress][1]*udp_size, attack[ingress][2]*dns_size, benign_traffic['DATA'] *udp_size,background*udp_size}}
-    return Traffic    
+    return Traffic  
+
+if __name__ =="__main__":
+    
+    print("Simulator Start!")
+    total_budget = Max_attack_budget
+    attack_types = ['RandMix', 'RandIngress', 'Smart']
+    for i in range(0,num_rounds):
+        
+        RTT = 0
+        attack_budget = random.uniform(1, total_budget)
+        total_budget-= attack_budget
+        
+        for j in attack_types:
+            attack_vol = getAttackStrategy(num_ingress, attack_budget, j, RTT)
+            attack_vol = FireWall(attack_vol, 0.6)
+            Traffic = mergeTraffic(attack_vol)
+            
+            #Create your own functions
 
         
 #threading.Thread(target=lambda: every(5, mergeTraffic)).start()
