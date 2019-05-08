@@ -103,13 +103,13 @@ def get_tuple(length, total):
     return filter(lambda x:sum(x)==total,product(range(total+1),repeat=length))
 
 #Return Attack Strategy
-def getAttackStrategy(ISPIngress, Budget, Attack = "Smart", RTT):
+def getAttackStrategy(ISPIngress, Budget, Attack, RTT):
     attack_volume = list(get_tuple(3,100))
 
     ingress = 1  
     if(Attack is "RandMix"):
         x = np.random.randint(0,5151)
-        attack_vol = attack_volume[x]
+        attack_vol = list(attack_volume[x])
         ingress = 1
         attack = {ingress:attack_vol}
         
@@ -128,6 +128,8 @@ def getAttackStrategy(ISPIngress, Budget, Attack = "Smart", RTT):
         attack = {ingress:[attack[0],attack[1],attack[2]]}
     
     for i in range(0,3):
+        print(attack[ingress][i])
+
         attack[ingress][i] = attack[ingress][i]/100*attack_budget
 
     
@@ -135,6 +137,7 @@ def getAttackStrategy(ISPIngress, Budget, Attack = "Smart", RTT):
 
 #Firewall Implementation
 def Firewall(attack, percent_ack):
+    ingress = list(attack.keys())[0]
     for i in range(0,3):
         attack[ingress][i] = attack[ingress][i]*(1-percent_ack)
 
@@ -171,9 +174,9 @@ if __name__ =="__main__":
         
         for j in attack_types:
             attack_vol = getAttackStrategy(num_ingress, attack_budget, j, RTT)
-            attack_vol = FireWall(attack_vol, 0.6)
+            attack_vol = Firewall(attack_vol, 0.6)
             Traffic = mergeTraffic(attack_vol)
-            
+            print(Traffic)
             #Create your own functions
 
         
