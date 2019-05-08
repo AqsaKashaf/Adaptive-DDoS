@@ -8,8 +8,8 @@ import threading
 num_ingress = 3
 ISP_Cap = 10000000
 VM_Cap = 200000
-Number_of_VMs = ISP_Cap/VM_Cap
-ISP_Queues = [100*Number_of_VMs,100*Number_of_VMs,100*Number_of_VMs]
+Number_of_VMs = 2
+ISP_Queues = [80,80,80]
 
 Process_Cap = 200000
 Process_Queue = 100
@@ -160,7 +160,7 @@ def mergeTraffic(attack):
     return Traffic  
 
 # Calculates the congestion in the ISP queue
-def calculateCongestionISP(attack, traffic):
+def calculateCongestionISP(round_num, attack, traffic):
 	# round 0
     # isp traffic per ingress all values
     # ISP_raffic = mergeTraffic()
@@ -245,7 +245,7 @@ def calculateCongestionISP(attack, traffic):
     return avail_queue_size, Rem_traffic
 	
 # Calculates the congestion in the Link queue
-def calculateCongestionLink(attack, traffic):
+def calculateCongestionLink(round_num, attack, traffic):
 	# round 0
     # isp traffic per ingress all values
     # ISP_raffic = mergeTraffic()
@@ -330,7 +330,7 @@ def calculateCongestionLink(attack, traffic):
     return avail_queue_size, Rem_traffic
 		
 # Calculates the congestion in the target queue
-def calculateCongestionProcess(attack, traffic):
+def calculateCongestionProcess(round_num, attack, traffic):
 	# round 0
     # isp traffic per ingress all values
     # ISP_raffic = mergeTraffic()
@@ -431,11 +431,11 @@ if __name__ =="__main__":
             Traffic = mergeTraffic(attack_vol)
             print(Traffic)
             
-            rem_ISP_queue, Traffic = calculateCongestionISP(attack, Traffic)
+            rem_ISP_queue, Traffic = calculateCongestionISP(i, attack, Traffic)
 
-            rem_link_queue, Traffic = calculateCongestionLink(attack, Traffic)
+            rem_link_queue, Traffic = calculateCongestionLink(i, attack, Traffic)
 
-            rem_process_queue, Traffic = calculateCongestionProcess(attack, Traffic)
+            rem_process_queue, Traffic = calculateCongestionProcess(i, attack, Traffic)
             #Create your own functions
 
         
