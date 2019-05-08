@@ -167,11 +167,12 @@ def mergeTraffic(attack):
  
 
 def backlogCongestion(V_syn):
-    backlogtime = datetime.datetime.now().timestamp()
+    #backlogtime = datetime.datetime.now().timestamp()
     
     expire_time = 45
     totalMachines = Server_Cap/VM_Cap
     total_connections = Backlog_Queue * totalMachines
+    available_syn_q = total_connections
     
     # Remains a constant throught
     total_server_processing = Server_Cap
