@@ -155,7 +155,7 @@ def mergeTraffic(attack):
     ingress = list(attack.keys())[0]
     
     #Merge everything together
-    Traffic = {ingress:{(attack[ingress][0]+benign_traffic['SYN']) * tcp_size, attack[ingress][1]*udp_size, attack[ingress][2]*dns_size, benign_traffic['DATA'] *udp_size,background*udp_size}}
+    Traffic = {ingress:{(attack[ingress][0]+benign_traffic['SYN'])*tcp_size, attack[ingress][1]*udp_size, attack[ingress][2]*dns_size, benign_traffic['DATA']*udp_size,background*udp_size}}
     return Traffic  
 
 if __name__ =="__main__":
