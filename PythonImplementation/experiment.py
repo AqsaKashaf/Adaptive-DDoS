@@ -8,8 +8,8 @@ import threading
 num_ingress = 3
 ISP_Cap = 10000000
 VM_Cap = 200000
-Number_of_VMs = 2
-ISP_Queues = [80,80,80]
+Number_of_VMs = ISP_Cap/VM_Cap
+ISP_Queues = [100*Number_of_VMs,100*Number_of_VMs,100*Number_of_VMs]
 
 Process_Cap = 200000
 Process_Queue = 100
