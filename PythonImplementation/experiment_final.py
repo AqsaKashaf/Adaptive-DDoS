@@ -335,8 +335,8 @@ def backlogCongestion(V_syn, available_syn_q, pkts_queued_syn, time_syn):
         #connections_syn_q = int(V_syn_q/tcp_size)
     connections_syn_q = int(V_syn/tcp_size)
         #Checking if all the incoming SYN connections can be queued
-    if total_connections - connections_syn_q < 0:
-        connections_dropped = connections_syn_q - total_connections
+ #   if total_connections - connections_syn_q < 0:
+ #       connections_dropped = connections_syn_q - total_connections
             #List containing the timestamp in which the connections were added to the queue 
             #time_syn.add(datetime.datetime.now().timestamp())
         t_syn+=[time.time()]
@@ -415,7 +415,12 @@ if __name__ =="__main__":
             
             back_queue, pkts_queued_syn, time_syn = backlogCongestion(SYN_VOL, available_syn_q, pkts_queued_syn, time_syn)
             
+            if(back_queue > int(total_connections)):
+                back_queue = int(total_connections)
+            if(back_queue < 0):
+                back_queue = 0
             print("Backlog Size {} \n".format(back_queue))
+
             t = time.time() 
             for k in range(0,len(time_syn)):
                 if t - time_syn[k] >= 3:
@@ -425,6 +430,8 @@ if __name__ =="__main__":
 
             
             available_syn_q = back_queue
+            if(back_queue < 0):
+                print("DDoSed at RTT 10000 at epoch {}".format(i))
             print("Backlog Size {} \n".format(available_syn_q))
             
             ##RTT = rttEstimate(rem_ISP_queue[0]+rem_ISP_queue[1]+rem_ISP_queue[2], rem_link_queue, rem_process_queue, available_syn_q, ISP_Cap[0])
@@ -436,7 +443,7 @@ if __name__ =="__main__":
             else:
                 RTT_QLearn+=[RTT]
             
-            time.sleep(1)
+
                 
                 
       
