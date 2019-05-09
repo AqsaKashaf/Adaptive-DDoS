@@ -26,11 +26,11 @@ Process_Cap = 200000 #Mbits
 Process_Queue = 100 #Mbits
 process_traffic = {'SYN':0,'UDP':0,'DNS':0,'Data':0}
 
-Server_Cap = 100000
-Backlog_per_VM = 256      #Per VM
+Server_Cap = 100000  #Mbits
+Backlog_per_VM = 256 #Connections Per VM
 
-Link_Cap = 500000
-Link_Queue = 100
+Link_Cap = 500000  #Mbits
+Link_Queue = 100   #Mbits
 avail_link_queue_size = Link_Queue
 
 amp_factor = np.random.randint(8,13)
@@ -40,7 +40,7 @@ num_rounds = 500
 Max_attack_budget = 100000
 
 tcp_size = 0.00048  #TCP Packet Sizes = 60bytes
-udp_size = 0.524280   #UDP Packet Sizes = 65,535 bytes
+udp_size = 0.524280 #UDP Packet Sizes = 65,535 bytes
 dns_size = amp_factor * udp_size  #DNS Amp Size
 
 rewards = [5,5,5,10,10,20]
@@ -176,9 +176,9 @@ def mergeTraffic(attack):
     Traffic = {0:{'SYN':0,'UDP':0,'DNS':0,'Data':0,'Background':0},1:{'SYN':0,'UDP':0,'DNS':0,'Data':0,'Background':0},2:{'SYN':0,'UDP':0,'DNS':0,'Data':0,'Background':0}}
     for j in range(0,3):
         if(j is ingress):
-            Traffic[j]={'SYN':attack[ingress][0]+benign_traffic['SYN'],'UDP':attack[ingress][1],'DNS':attack[ingress][2], 'Data':benign_traffic['DATA']/3,'Background':background/3}
+            Traffic[j]={'SYN':attack[ingress][0]+benign_traffic['SYN'],'UDP':attack[ingress][1],'DNS':attack[ingress][2], 'Data':benign_traffic['DATA'],'Background':background}
         else:
-            Traffic[j]={'SYN':0,'UDP':0,'DNS':0,'Data':benign_traffic['DATA']/3,'Background':background/3}
+            Traffic[j]={'SYN':0,'UDP':0,'DNS':0,'Data':benign_traffic['DATA'],'Background':background}
     return Traffic, attack_syn_vol, benign_syn_vol      #Return benign and attack syn volume for SYN
 
 # Calculates the congestion in the ISP queue
@@ -386,7 +386,3 @@ if __name__ =="__main__":
                 
             if(i==9):
                 break
-                    
-
-            
-            
