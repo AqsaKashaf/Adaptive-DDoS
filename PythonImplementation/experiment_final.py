@@ -10,6 +10,9 @@ VM_Cap = 200000
 Number_of_VMs = ISP_Cap[0]/VM_Cap
 #print(Number_of_VMs)
 ISP_Queues = [80*Number_of_VMs, 80*Number_of_VMs, 80*Number_of_VMs]  #Mbits
+
+print(ISP_Queues)
+
 Traffic_sum = [0,0,0]
 packet_drops = [0,0,0]
 pkts_to_be_queued = [0,0,0]
@@ -177,7 +180,7 @@ def mergeTraffic(attack):
     Traffic = {0:{'SYN':0,'UDP':0,'DNS':0,'Data':0,'Background':0},1:{'SYN':0,'UDP':0,'DNS':0,'Data':0,'Background':0},2:{'SYN':0,'UDP':0,'DNS':0,'Data':0,'Background':0}}
     for j in range(0,3):
         if(j is ingress):
-            Traffic[j]={'SYN':attack[ingress][0]+benign_traffic['SYN']*tcp_size,'UDP':attack[ingress][1],'DNS':attack[ingress][2], 'Data':benign_traffic['DATA']*udp_size/3,'Background':background*udp_size/3}
+            Traffic[j]={'SYN':attack[ingress][0]+benign_traffic['SYN']*tcp_size,'UDP':attack[ingress][1],'DNS':attack[ingress][2], 'Data':benign_traffic['DATA']/3,'Background':background/3}
         else:
             Traffic[j]={'SYN':0,'UDP':0,'DNS':0,'Data':benign_traffic['DATA']/3,'Background':background/3}
     return Traffic, attack_syn_vol, benign_syn_vol      #Return benign and attack syn volume for SYN
@@ -189,7 +192,10 @@ def calculateCongestionISP(traffic):
     for i in range(0,num_ingress):  
         
         Traffic_sum[i] = sum(traffic[i].values())
+        print(Traffic_sum[i])
         pkts_to_be_queued[i] = Traffic_sum[i] + occupied_queue_size[i] - ISP_Cap[i]
+        if(pkts_to_be_queued[i] < 0):
+            pkts_to_be_queued[i] = 0
         #print(pkts_to_be_queued[i])
         #time.sleep(1)
         P_syn = traffic[i]['SYN']/Traffic_sum[i]
@@ -208,7 +214,7 @@ def calculateCongestionISP(traffic):
             rem_traffic[i]['DNS'] = traffic[i]['DNS'] - P_dns*occupied_queue_size[i]
             rem_traffic[i]['Data'] = traffic[i]['Data'] - P_data*occupied_queue_size[i]
             rem_traffic[i]['Background'] = traffic[i]['Background'] - P_bg*occupied_queue_size[i]
-            #print(occupied_queue_size[i])
+            #print("Occupied Queue Size {}".format(occupied_queue_size[i]))
             #time.sleep(1)
 
         if pkts_to_be_queued[i] > ISP_Queues[i]:
@@ -221,8 +227,8 @@ def calculateCongestionISP(traffic):
             rem_traffic[i]['DNS'] = traffic[i]['DNS'] - P_dns*(occupied_queue_size[i] + packet_drops[i])
             rem_traffic[i]['Data'] = traffic[i]['Data'] - P_data*(occupied_queue_size[i] + packet_drops[i])
             rem_traffic[i]['Background'] = traffic[i]['Background'] - P_bg*(occupied_queue_size[i] + packet_drops[i])
-            #print(occupied_queue_size[i])
-            #time.sleep(1)
+            #print("Occupied Queue Size {}".format(occupied_queue_size[i]))
+            time.sleep(1)
 
         avail_queue_size[i] = ISP_Queues[i] - occupied_queue_size[i]
         
@@ -240,8 +246,11 @@ def calculateCongestionLink(traffic, occupied_link_queued_size):
         link_traffic['Data'] += traffic[i]['Data']
 
     total_link_traffic = sum(link_traffic.values())
+    print(total_link_traffic)
 
     pkts_to_be_queued_link = total_link_traffic + queue_occ - Link_Cap
+    if(pkts_to_be_queued_link < 0):
+        pkts_to_be_queued_link = 0
     
     P_syn = link_traffic['SYN']/total_link_traffic
     P_udp = link_traffic['UDP']/total_link_traffic
@@ -280,8 +289,12 @@ def calculateCongestionProcess(traffic, occupied_process_queue_size):
     process_traffic['Data'] += traffic['Data']
 
     total_process_traffic = sum(process_traffic.values())
+    print(total_process_traffic)
 
     pkts_to_be_queued_process = total_process_traffic + proc_occ - Process_Cap
+    if(pkts_to_be_queued_process < 0):
+        pkts_to_be_queued_process = 0
+        
     P_syn = process_traffic['SYN']/total_process_traffic
     P_udp = process_traffic['UDP']/total_process_traffic
     P_dns = process_traffic['DNS']/total_process_traffic
@@ -315,21 +328,22 @@ def backlogCongestion(V_syn, available_syn_q, pkts_queued_syn, time_syn):
     # Remains a constant throught
     total_server_processing = Server_Cap
     #Checking is the processing capacity of the server is greater than the volume of the SYN traffic
-    if total_server_processing - V_syn < 0:
+    
+    #if total_server_processing - V_syn < 0:
         #Volume of the traffic to be queued
-        V_syn_q = V_syn - total_server_processing
+    #V_syn_q = V_syn - total_server_processing
         #connections_syn_q = int(V_syn_q/tcp_size)
-        connections_syn_q = V_syn_q
+    connections_syn_q = int(V_syn/tcp_size)
         #Checking if all the incoming SYN connections can be queued
-        if total_connections - connections_syn_q < 0:
-            connections_dropped = connections_syn_q - total_connections
+    if total_connections - connections_syn_q < 0:
+        connections_dropped = connections_syn_q - total_connections
             #List containing the timestamp in which the connections were added to the queue 
             #time_syn.add(datetime.datetime.now().timestamp())
-            t_syn+=[time.time()]
+        t_syn+=[time.time()]
             #List containing the number of connections added to the queue
-            pkts_syn+=[av_q - connections_dropped]
+        pkts_syn+=[av_q - connections_dropped]
             #Recalculating the available space in the backlog queue
-            av_q = av_q - pkts_queued_syn[-1]
+        av_q = av_q - pkts_queued_syn[-1]
     return av_q, pkts_syn, t_syn
 
 def rttEstimate(ISP_Queues, Link_Queue, Process_Queue, Backlog_Queue, ISP_Cap):
@@ -342,7 +356,7 @@ def rttEstimate(ISP_Queues, Link_Queue, Process_Queue, Backlog_Queue, ISP_Cap):
 if __name__ =="__main__":
     
     ISP_Cap = [10000000/num_ingress, 10000000/num_ingress, 10000000/num_ingress]    #Static
-    VM_Cap = 200000
+    VM_Cap = 2000
     Number_of_VMs = [ISP_Cap[0]/VM_Cap, ISP_Cap[1]/VM_Cap, ISP_Cap[2]/VM_Cap]       #print(Number_of_VMs)
     ISP_Queues = [80*Number_of_VMs[0], 80*Number_of_VMs[1], 80*Number_of_VMs[2]]    #Mbits
     
@@ -379,18 +393,22 @@ if __name__ =="__main__":
                     
             #print(Traffic)
             print("Attack Type {} Round {} \n".format(j,i))            
-            rem_ISP_queue, Traffic = calculateCongestionISP(Traffic)
+            rem_ISP_queue, ISP_Traffic = calculateCongestionISP(Traffic)
             print("Remaining ISP Queue Lengths {} \n".format(rem_ISP_queue))
+            print(ISP_Traffic)
 
-            rem_link_queue, Traffic, occupied_link_queue_size = calculateCongestionLink(Traffic, occupied_link_queue_size)
+            rem_link_queue, Link_Traffic, occupied_link_queue_size = calculateCongestionLink(ISP_Traffic, occupied_link_queue_size)
             print("Remaining Link Queue Lengths {}, Occupied {} \n".format(rem_link_queue, occupied_link_queue_size))
-            print("Traffic Volume {}\n".format(sum(Traffic.values())))
+            #print("Traffic Volume {}\n".format(sum(Traffic.values())))
+            print(Link_Traffic)
 
-            rem_process_queue, Traffic, occupied_process_queue_size = calculateCongestionProcess(Traffic, occupied_process_queue_size)
+            rem_process_queue, Process_Traffic, occupied_process_queue_size = calculateCongestionProcess(Link_Traffic, occupied_process_queue_size)
             print("Remaining Process Queue Lengths {}, Occupied {} \n".format(rem_process_queue, occupied_process_queue_size))
-            print("Traffic Volume {} \n".format(sum(Traffic.values())))
-            #Create your own functions
-            SYN_VOL = int(Traffic['SYN'])
+            #summer = sum(Process_Traffic.values())
+            #print("Traffic Volume {} \n".format(sum))
+            print(Process_Traffic)
+            
+            SYN_VOL = int(Process_Traffic['SYN'])
             print("SYN Volumes {}".format(SYN_VOL))
             attack_syn_percent = attack_syn_vol/(attack_syn_vol + benign_syn_vol)
             benign_syn_percent = benign_syn_vol/(attack_syn_vol + benign_syn_vol)
@@ -420,9 +438,6 @@ if __name__ =="__main__":
             
             time.sleep(1)
                 
-        #print("Round {}\n".format(i))
                 
-                    
-
-            
+      
             
