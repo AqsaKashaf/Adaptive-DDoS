@@ -171,14 +171,15 @@ def mergeTraffic(attack):
     background, benign_traffic = BenignTraffic()
     #Get keys
     ingress = list(attack.keys())[0]
+    attack_syn_vol = attack[ingress][0]/(attack[ingress][0]+benign_traffic['SYN'])
+    benign_syn_vol = benign_traffic['SYN']/(attack[ingress][0]+benign_traffic['SYN'])
     Traffic = {0:{'SYN':0,'UDP':0,'DNS':0,'Data':0,'Background':0},1:{'SYN':0,'UDP':0,'DNS':0,'Data':0,'Background':0},2:{'SYN':0,'UDP':0,'DNS':0,'Data':0,'Background':0}}
     for j in range(0,3):
-    #Merge everything together
-	if(j is ingress):
-    		Traffic[j]={'SYN':attack[ingress][0]+benign_traffic['SYN'],'UDP':attack[ingress][1],'DNS':attack[ingress][2], 'Data':benign_traffic['DATA'],'Background':background}
-	else:
-		Traffic[j]={'SYN':0,'UDP':0,'DNS':0,'Data':benign_traffic['DATA'],'Background':background}
-    return Traffic  
+        if(j is ingress):
+            Traffic[j]={'SYN':attack[ingress][0]+benign_traffic['SYN'],'UDP':attack[ingress][1],'DNS':attack[ingress][2], 'Data':benign_traffic['DATA'],'Background':background}
+        else:
+            Traffic[j]={'SYN':0,'UDP':0,'DNS':0,'Data':benign_traffic['DATA'],'Background':background}
+    return Traffic, attack_syn_col, benign_syn_vol      #Return benign and attack syn volume for SYN
 
 # Calculates the congestion in the ISP queue
 def calculateCongestionISP(traffic):
@@ -217,9 +218,8 @@ def calculateCongestionISP(traffic):
 	
 # Calculates the congestion in the Link queue
 def calculateCongestionLink(traffic):
-	rem_link_traffic = link_traffic
-
-    for i in range(num_ingress):  
+    rem_link_traffic = link_traffic
+    for i in range(num_ingress):
         link_traffic['SYN'] += traffic[i]['SYN']
         link_traffic['UDP'] += traffic[i]['UDP']
         link_traffic['DNS'] += traffic[i]['DNS']
@@ -305,7 +305,7 @@ if __name__ =="__main__":
         for j in attack_types:
             attack_vol = getAttackStrategy(num_ingress, attack_budget, j, RTT)
             attack_vol = Firewall(attack_vol, 0.6)
-            Traffic = mergeTraffic(attack_vol)
+            Traffic, attack_syn_vol, benign_syn_vol = mergeTraffic(attack_vol)
             print(Traffic)
             
             rem_ISP_queue, Traffic = calculateCongestionISP(attack, Traffic)
