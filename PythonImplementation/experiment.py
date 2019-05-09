@@ -176,9 +176,9 @@ def mergeTraffic(attack):
     Traffic = {0:{'SYN':0,'UDP':0,'DNS':0,'Data':0,'Background':0},1:{'SYN':0,'UDP':0,'DNS':0,'Data':0,'Background':0},2:{'SYN':0,'UDP':0,'DNS':0,'Data':0,'Background':0}}
     for j in range(0,3):
         if(j is ingress):
-            Traffic[j]={'SYN':attack[ingress][0]+benign_traffic['SYN'],'UDP':attack[ingress][1],'DNS':attack[ingress][2], 'Data':benign_traffic['DATA'],'Background':background}
+            Traffic[j]={'SYN':attack[ingress][0]+benign_traffic['SYN'],'UDP':attack[ingress][1],'DNS':attack[ingress][2], 'Data':benign_traffic['DATA']/3,'Background':background/3}
         else:
-            Traffic[j]={'SYN':0,'UDP':0,'DNS':0,'Data':benign_traffic['DATA'],'Background':background}
+            Traffic[j]={'SYN':0,'UDP':0,'DNS':0,'Data':benign_traffic['DATA']/3,'Background':background/3}
     return Traffic, attack_syn_vol, benign_syn_vol      #Return benign and attack syn volume for SYN
 
 # Calculates the congestion in the ISP queue
