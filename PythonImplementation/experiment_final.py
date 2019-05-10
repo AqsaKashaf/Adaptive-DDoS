@@ -414,13 +414,14 @@ if __name__ =="__main__":
     #time.sleep(1)
     total_budget = Max_attack_budget
     attack_types = ['RandMix', 'RandIngress', 'Smart']
+    RTT = 0
     for i in range(0,num_rounds):
         
-        RTT = 0
-        #attack_budget = random.uniform(total_budget/4, 3*total_budget/4)
-        #total_budget-= attack_budget
         
-        attack_budget = 100000
+        attack_budget = random.uniform(total_budget/4, 3*total_budget/4)
+        total_budget-= attack_budget
+        
+        #attack_budget = 100000
         #total_budget-= attack_budget
         #if(total_budget<=0):
         #    print("Budget Reached in epoch {}".format(i))
