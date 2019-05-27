@@ -44,7 +44,7 @@ func sendPkts(n int, ingress int) {
 }
 
 func flowGenSimple(ingress int) {
-	fixedRate := 1000.0 // Mbps
+	fixedRate := 100.0 // Mbps
 	numPkts := int(math.Ceil(fixedRate / (PKT_LEN)))
 	_DEBUG.Printf("Function: flowGenSimple - Number of packets to send in 100 ms %d with packet length %f and send rate %f", numPkts, PKT_LEN, fixedRate)
 	for {
